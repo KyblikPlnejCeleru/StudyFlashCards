@@ -27,7 +27,8 @@ public class WelcomeScreen {
         });
 
         settingsButton.addActionListener(e -> {
-            // TODO: open settings window
+            SettingsScreen settingsScreen = new SettingsScreen();
+            settingsScreen.showApp();
         });
 
         loadButton.addActionListener(e -> {
