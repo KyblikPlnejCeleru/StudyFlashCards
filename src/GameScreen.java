@@ -18,7 +18,7 @@ public class GameScreen {
 
     public GameScreen(ArrayList<Card> cards) {
         this.frame = new JFrame("FlashCards by romek");
-        this.cards = new ArrayList<>();
+        this.cards = cards;
         this.currentIndex = 0;
         frame.setVisible(true);
         this.game = new Game();
