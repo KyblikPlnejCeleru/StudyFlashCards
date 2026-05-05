@@ -66,6 +66,19 @@ public class GameScreen {
         frame.add(question,BorderLayout.NORTH);
         frame.add(answers,BorderLayout.SOUTH);
 
+        answer1.addActionListener(e -> {
+            // TODO: complete what happens when you click answer
+        });
+        answer2.addActionListener(e -> {
+            // TODO: complete what happens when you click answer
+        });
+        answer3.addActionListener(e -> {
+            // TODO: complete what happens when you click answer
+        });
+        answer4.addActionListener(e -> {
+            // TODO: complete what happens when you click answer
+        });
+
 
 
 
