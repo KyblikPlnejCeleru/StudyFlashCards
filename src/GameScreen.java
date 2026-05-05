@@ -1,5 +1,6 @@
 import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -27,7 +28,14 @@ public class GameScreen {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        javax.swing.JLabel question = new JLabel("cau dobry den");
+
+        JLabel question = new JLabel("cau dobry den");
+        question.setPreferredSize(new Dimension(ss.width/7,ss.height/7));
+        question.setOpaque(true);
+        question.setBackground(Color.PINK);
+
+
+
 
         question.setHorizontalAlignment(JLabel.CENTER);
         question.setSize(ss.width,ss.height/2);
