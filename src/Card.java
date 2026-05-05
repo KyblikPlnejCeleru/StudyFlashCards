@@ -3,15 +3,13 @@ import java.awt.*;
 public class Card {
 
     private String name;
-    private int id;
     private String imageName;
     private Question question;
 
     private boolean isCorrect;
 
-    public Card(String name, int id, String imageName, Question question) {
+    public Card(String name, String imageName, Question question) {
         this.name = name;
-        this.id = id;
         this.imageName = imageName;
         this.question = question;
     }
@@ -25,8 +23,37 @@ public class Card {
 
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 
 
+    public String getImageName() {
+        return imageName;
+    }
 
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public boolean isCorrect() {
+        return isCorrect;
+    }
+
+    public void setCorrect(boolean correct) {
+        isCorrect = correct;
+    }
 }
