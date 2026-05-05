@@ -6,7 +6,7 @@ public class Card {
     private int id;
     private String imageName;
     private Question question;
-    private int inputAnswerIndex;
+
     private boolean isCorrect;
 
     public Card(String name, int id, String imageName, Question question) {
@@ -17,8 +17,8 @@ public class Card {
     }
 
 
-    public boolean correction(){
-        if (inputAnswerIndex==question.getrAnswerIndex()){
+    public boolean correction(int index){
+        if (index==question.getrAnswerIndex()){
             return true;
         }
         return false;
