@@ -14,6 +14,9 @@ public class GameScreen {
     private ArrayList<Card> cards;
     private int currentIndex;
     private Game game;
+    private JLabel question;
+    private JButton answer1, answer2, answer3, answer4;
+    private JLabel imageLabel;
 
 
     public GameScreen(ArrayList<Card> cards) {
@@ -31,7 +34,7 @@ public class GameScreen {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 
-        JLabel question = new JLabel(cards.get(currentIndex).getQuestion().getQ());
+        question = new JLabel(cards.get(currentIndex).getQuestion().getQ());
         question.setPreferredSize(new Dimension(ss.width/7,ss.height/7));
         question.setOpaque(true);
         question.setBackground(Color.PINK);
@@ -47,10 +50,10 @@ public class GameScreen {
         answers.setPreferredSize(new Dimension(ss.width/7,ss.height/7));
 
 
-        JButton answer1 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[0]);
-        JButton answer2 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[1]);
-        JButton answer3 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[2]);
-        JButton answer4 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[3]);
+        answer1 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[0]);
+        answer2 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[1]);
+        answer3 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[2]);
+        answer4 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[3]);
 
         answers.add(answer1);
         answers.add(answer2);
@@ -58,12 +61,12 @@ public class GameScreen {
         answers.add(answer4);
 
 
-        ImageIcon img = new ImageIcon("test.jpg");
-        JLabel imageLabel = new JLabel();
+        String imageName = cards.get(currentIndex).getImageName();
+        ImageIcon img = new ImageIcon(imageName);
+        imageLabel = new JLabel();
         imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/4,ss.height/3, Image.SCALE_SMOOTH)));
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         imageLabel.setVerticalAlignment(JLabel.CENTER);
-        ;//""
         frame.add(imageLabel,BorderLayout.CENTER);
         frame.add(question,BorderLayout.NORTH);
         frame.add(answers,BorderLayout.SOUTH);
@@ -71,46 +74,50 @@ public class GameScreen {
         answer1.addActionListener(e -> {
             if (cards.get(currentIndex).correction(0)){
                 game.setCorrectAnsw(game.getCorrectAnsw()+1);
-                currentIndex++;
-                return;
+            } else {
+                game.setWrongAns(game.getWrongAns()+1);
             }
-            game.setWrongAns(game.getWrongAns()+1);
             currentIndex++;
-            // TODO: complete what happens when you click answer
+            updateScreen();
         });
         answer2.addActionListener(e -> {
             if (cards.get(currentIndex).correction(1)){
                 game.setCorrectAnsw(game.getCorrectAnsw()+1);
-                currentIndex++;
-                return;
+            } else {
+                game.setWrongAns(game.getWrongAns()+1);
             }
-            game.setWrongAns(game.getWrongAns()+1);
             currentIndex++;
-            // TODO: complete what happens when you click answer
+            updateScreen();
         });
         answer3.addActionListener(e -> {
             if (cards.get(currentIndex).correction(2)){
                 game.setCorrectAnsw(game.getCorrectAnsw()+1);
-                currentIndex++;
-                return;
+            } else {
+                game.setWrongAns(game.getWrongAns()+1);
             }
-            game.setWrongAns(game.getWrongAns()+1);
-            currentIndex++;;
-            // TODO: complete what happens when you click answer
+            currentIndex++;
+            updateScreen();
         });
         answer4.addActionListener(e -> {
             if (cards.get(currentIndex).correction(3)){
                 game.setCorrectAnsw(game.getCorrectAnsw()+1);
-                currentIndex++;
-                return;
+            } else {
+                game.setWrongAns(game.getWrongAns()+1);
             }
-            game.setWrongAns(game.getWrongAns()+1);
             currentIndex++;
-            // TODO: complete what happens when you click answer
+            updateScreen();
         });
 
+    }
 
-
-
+    private void updateScreen() {
+            question.setText(cards.get(currentIndex).getQuestion().getQ());
+            answer1.setText(cards.get(currentIndex).getQuestion().getAnswer()[0]);
+            answer2.setText(cards.get(currentIndex).getQuestion().getAnswer()[1]);
+            answer3.setText(cards.get(currentIndex).getQuestion().getAnswer()[2]);
+            answer4.setText(cards.get(currentIndex).getQuestion().getAnswer()[3]);
+            String imageName = cards.get(currentIndex).getImageName();
+            ImageIcon img = new ImageIcon(imageName);
+            imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/4, ss.height/3, Image.SCALE_SMOOTH)));
     }
 }
