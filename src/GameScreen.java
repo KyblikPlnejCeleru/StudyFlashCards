@@ -39,8 +39,7 @@ public class GameScreen {
         question.setOpaque(true);
         question.setBackground(Color.PINK);
 
-
-
+        question.setFont(new Font("Q", Font.PLAIN,ss.width / 60));
 
         question.setHorizontalAlignment(JLabel.CENTER);
         question.setSize(ss.width,ss.height/2);
@@ -54,6 +53,14 @@ public class GameScreen {
         answer2 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[1]);
         answer3 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[2]);
         answer4 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[3]);
+
+        Font answerFont = new Font("A", Font.PLAIN, ss.width / 80);
+
+        answer1.setFont(answerFont);
+        answer2.setFont(answerFont);
+        answer3.setFont(answerFont);
+        answer4.setFont(answerFont);
+
 
         answers.add(answer1);
         answers.add(answer2);
