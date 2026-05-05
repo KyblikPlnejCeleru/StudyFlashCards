@@ -1,0 +1,31 @@
+{
+  "card": [
+    {
+      "name": "Otázka 1",
+      "imageName": "image1.jpg",
+      "question": {
+        "q": "Kolik je 2 + 2?",
+        "answer": ["1", "2", "3", "4"],
+        "rAnswerIndex": 3
+      }
+    },
+    {
+      "name": "Otázka 2",
+      "imageName": "image2.jpg",
+      "question": {
+        "q": "Hlavní město ČR je?",
+        "answer": ["Brno", "Praha", "Ostrava", "Plzeň"],
+        "rAnswerIndex": 1
+      }
+    },
+    {
+      "name": "Otázka 3",
+      "imageName": "image3.jpg",
+      "question": {
+        "q": "Jaký jazyk používáš?",
+        "answer": ["Python", "Java", "C++", "Rust"],
+        "rAnswerIndex": 1
+      }
+    }
+  ]
+}
