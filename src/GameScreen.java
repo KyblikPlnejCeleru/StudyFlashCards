@@ -13,6 +13,7 @@ public class GameScreen {
     private JFrame frame;
     private ArrayList<Card> cards;
     private int currentIndex;
+    private Game game;
 
 
     public GameScreen(ArrayList<Card> cards) {
@@ -20,6 +21,7 @@ public class GameScreen {
         this.cards = new ArrayList<>();
         this.currentIndex = 0;
         frame.setVisible(true);
+        this.game = new Game();
     }
 
     public void showApp() {
@@ -67,15 +69,43 @@ public class GameScreen {
         frame.add(answers,BorderLayout.SOUTH);
 
         answer1.addActionListener(e -> {
+            if (cards.get(currentIndex).correction(0)){
+                game.setCorrectAnsw(game.getCorrectAnsw()+1);
+                currentIndex++;
+                return;
+            }
+            game.setWrongAns(game.getWrongAns()+1);
+            currentIndex++;
             // TODO: complete what happens when you click answer
         });
         answer2.addActionListener(e -> {
+            if (cards.get(currentIndex).correction(1)){
+                game.setCorrectAnsw(game.getCorrectAnsw()+1);
+                currentIndex++;
+                return;
+            }
+            game.setWrongAns(game.getWrongAns()+1);
+            currentIndex++;
             // TODO: complete what happens when you click answer
         });
         answer3.addActionListener(e -> {
+            if (cards.get(currentIndex).correction(2)){
+                game.setCorrectAnsw(game.getCorrectAnsw()+1);
+                currentIndex++;
+                return;
+            }
+            game.setWrongAns(game.getWrongAns()+1);
+            currentIndex++;;
             // TODO: complete what happens when you click answer
         });
         answer4.addActionListener(e -> {
+            if (cards.get(currentIndex).correction(3)){
+                game.setCorrectAnsw(game.getCorrectAnsw()+1);
+                currentIndex++;
+                return;
+            }
+            game.setWrongAns(game.getWrongAns()+1);
+            currentIndex++;
             // TODO: complete what happens when you click answer
         });
 
