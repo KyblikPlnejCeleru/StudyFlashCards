@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 public class GameScreen {
 
+
+    public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
+
+
     private JFrame frame;
     private ArrayList<Card> cards;
     private int currentIndex;
@@ -18,11 +22,14 @@ public class GameScreen {
     }
 
     public void showApp() {
-        frame.setSize(300, 200);
+        frame.setSize(ss.width/16*10,ss.height / 10*10);
         frame.setLayout(new BorderLayout());
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        javax.swing.JLabel question = new JLabel("cau dobry den");
+        question.setHorizontalAlignment(JLabel.CENTER);
+        question.setSize(ss.width,ss.height/2);
         JButton answer1 = new JButton("a");
         JButton answer2 = new JButton("b");
         JButton answer3 = new JButton("c");
@@ -30,11 +37,13 @@ public class GameScreen {
 
         ImageIcon img = new ImageIcon("test.jpg");
         JLabel imageLabel = new JLabel();
-        imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(600, 600, Image.SCALE_SMOOTH)));
+        imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/4,ss.height/3, Image.SCALE_SMOOTH)));
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         imageLabel.setVerticalAlignment(JLabel.CENTER);
         ;//""
         frame.add(imageLabel,BorderLayout.CENTER);
+        frame.add(question,BorderLayout.NORTH);
+
 
 
 
