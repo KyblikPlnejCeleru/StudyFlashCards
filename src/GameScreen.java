@@ -23,17 +23,30 @@ public class GameScreen {
 
     public void showApp() {
         frame.setSize(ss.width/16*10,ss.height / 10*10);
-        frame.setLayout(new BorderLayout());
+        frame.setLayout(new BorderLayout(10,10));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         javax.swing.JLabel question = new JLabel("cau dobry den");
+
         question.setHorizontalAlignment(JLabel.CENTER);
         question.setSize(ss.width,ss.height/2);
+
+        JPanel answers = new JPanel();
+        answers.setLayout(new GridLayout(2,2));
+        answers.setPreferredSize(new Dimension(ss.width/7,ss.height/7));
+
+
         JButton answer1 = new JButton("a");
         JButton answer2 = new JButton("b");
         JButton answer3 = new JButton("c");
         JButton answer4 = new JButton("d");
+
+        answers.add(answer1);
+        answers.add(answer2);
+        answers.add(answer3);
+        answers.add(answer4);
+
 
         ImageIcon img = new ImageIcon("test.jpg");
         JLabel imageLabel = new JLabel();
@@ -43,6 +56,7 @@ public class GameScreen {
         ;//""
         frame.add(imageLabel,BorderLayout.CENTER);
         frame.add(question,BorderLayout.NORTH);
+        frame.add(answers,BorderLayout.SOUTH);
 
 
 
