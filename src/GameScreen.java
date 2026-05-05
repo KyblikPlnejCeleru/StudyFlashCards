@@ -31,7 +31,7 @@ public class GameScreen {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 
-        JLabel question = new JLabel("cau dobry den");
+        JLabel question = new JLabel(cards.get(currentIndex).getQuestion().getQ());
         question.setPreferredSize(new Dimension(ss.width/7,ss.height/7));
         question.setOpaque(true);
         question.setBackground(Color.PINK);
@@ -47,10 +47,10 @@ public class GameScreen {
         answers.setPreferredSize(new Dimension(ss.width/7,ss.height/7));
 
 
-        JButton answer1 = new JButton("a");
-        JButton answer2 = new JButton("b");
-        JButton answer3 = new JButton("c");
-        JButton answer4 = new JButton("d");
+        JButton answer1 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[0]);
+        JButton answer2 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[1]);
+        JButton answer3 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[2]);
+        JButton answer4 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[3]);
 
         answers.add(answer1);
         answers.add(answer2);
