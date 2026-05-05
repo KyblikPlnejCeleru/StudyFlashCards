@@ -3,9 +3,11 @@ import java.awt.*;
 
 public class WelcomeScreen {
     private JFrame frame;
+    private GameData gameData;
 
     public WelcomeScreen() {
         this.frame = new JFrame("FlashCards");
+        this.gameData = new GameData();
     }
 
     public void showApp() {
@@ -23,7 +25,8 @@ public class WelcomeScreen {
         frame.add(loadButton);
 
         startButton.addActionListener(e -> {
-            // TODO: open study window
+            GameScreen gameScreen = new GameScreen(gameData.card);
+            gameScreen.showApp();
         });
 
         settingsButton.addActionListener(e -> {
