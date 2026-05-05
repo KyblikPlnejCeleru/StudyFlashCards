@@ -1,5 +1,8 @@
 
 
+
+
+
 import com.sun.tools.javac.Main;
 
 import com.google.gson.Gson;
@@ -45,7 +48,7 @@ public class GameData {
 
         //Načtení souboru gamedata.json, musí být ve složce res/resources, ta musí být označena jako resource složka projektu
 
-        InputStream input = GameData.class.getResourceAsStream("/GameData.json");
+        InputStream input = GameData.class.getResourceAsStream(resourcePath);
         if (input == null){
             throw new RuntimeException();
         }
@@ -54,7 +57,7 @@ public class GameData {
             return gson.fromJson(new InputStreamReader(input, StandardCharsets.UTF_8), GameData.class);
 
         } catch (Exception e) {
-            throw new RuntimeException("Chyba při načítání JSON: " + e.getMessage());
+           throw new RuntimeException("Chyba při načítání JSON: " + e.getMessage());
         }
 
     }
