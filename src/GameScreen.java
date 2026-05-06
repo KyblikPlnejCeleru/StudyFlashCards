@@ -37,7 +37,8 @@ public class GameScreen {
         question = new JLabel(cards.get(currentIndex).getQuestion().getQ());
         question.setPreferredSize(new Dimension(ss.width/7,ss.height/7));
         question.setOpaque(true);
-        question.setBackground(Color.PINK);
+        question.setBackground(ThemeManager.getBackgroundColor());
+        question.setForeground(ThemeManager.getForegroundColor());
 
         question.setFont(new Font("Q", Font.PLAIN,ss.width / 60));
 
@@ -47,6 +48,7 @@ public class GameScreen {
         JPanel answers = new JPanel();
         answers.setLayout(new GridLayout(2,2));
         answers.setPreferredSize(new Dimension(ss.width/7,ss.height/7));
+        answers.setBackground(ThemeManager.getBackgroundColor());
 
 
         answer1 = new JButton(cards.get(currentIndex).getQuestion().getAnswer()[0]);
@@ -61,6 +63,15 @@ public class GameScreen {
         answer3.setFont(answerFont);
         answer4.setFont(answerFont);
 
+
+        answer1.setBackground(ThemeManager.getBackgroundColor());
+        answer1.setForeground(ThemeManager.getForegroundColor());
+        answer2.setBackground(ThemeManager.getBackgroundColor());
+        answer2.setForeground(ThemeManager.getForegroundColor());
+        answer3.setBackground(ThemeManager.getBackgroundColor());
+        answer3.setForeground(ThemeManager.getForegroundColor());
+        answer4.setBackground(ThemeManager.getBackgroundColor());
+        answer4.setForeground(ThemeManager.getForegroundColor());
 
         answers.add(answer1);
         answers.add(answer2);
@@ -77,6 +88,8 @@ public class GameScreen {
         frame.add(imageLabel,BorderLayout.CENTER);
         frame.add(question,BorderLayout.NORTH);
         frame.add(answers,BorderLayout.SOUTH);
+
+        frame.getContentPane().setBackground(ThemeManager.getBackgroundColor());
 
         answer1.addActionListener(e -> {
             if (cards.get(currentIndex).correction(0)){

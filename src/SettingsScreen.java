@@ -23,13 +23,25 @@ public class SettingsScreen {
         group.add(lightButton);
         group.add(darkButton);
 
+        String currentTheme = ThemeManager.getCurrentTheme();
+        if (currentTheme.equals("dark")) {
+            darkButton.setSelected(true);
+        } else {
+            lightButton.setSelected(true);
+        }
+
         frame.add(themeLabel);
         frame.add(lightButton);
         frame.add(darkButton);
         frame.add(saveButton);
 
         saveButton.addActionListener(e -> {
-            // TODO: make the theme appliyable
+            if (lightButton.isSelected()) {
+                ThemeManager.setTheme("light");
+            } else {
+                ThemeManager.setTheme("dark");
+            }
+            frame.dispose();
         });
 
         frame.setVisible(true);
