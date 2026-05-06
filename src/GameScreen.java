@@ -28,7 +28,7 @@ public class GameScreen {
     }
 
     public void showApp() {
-        frame.setSize(ss.width/16*10,ss.height / 10*10);
+        frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         frame.setLayout(new BorderLayout(10,10));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
