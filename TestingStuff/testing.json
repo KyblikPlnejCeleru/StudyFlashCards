@@ -1,0 +1,49 @@
+{
+  "card": [
+    {
+      "name": "Kvíz A",
+      "imageName": "random1.jpg",
+      "question": {
+        "q": "Kolik je 5 + 7?",
+        "answer": ["10", "11", "12", "13"],
+        "rAnswerIndex": 2
+      }
+    },
+    {
+      "name": "Kvíz B",
+      "imageName": "random2.jpg",
+      "question": {
+        "q": "Jaké je hlavní město Německa?",
+        "answer": ["Mnichov", "Berlín", "Hamburk", "Frankfurt"],
+        "rAnswerIndex": 1
+      }
+    },
+    {
+      "name": "Kvíz C",
+      "imageName": "random3.jpg",
+      "question": {
+        "q": "Který jazyk je skriptovací?",
+        "answer": ["C", "Python", "Assembly", "C++"],
+        "rAnswerIndex": 1
+      }
+    },
+    {
+      "name": "Kvíz D",
+      "imageName": "random4.jpg",
+      "question": {
+        "q": "Kolik dní má týden?",
+        "answer": ["5", "6", "7", "8"],
+        "rAnswerIndex": 2
+      }
+    },
+    {
+      "name": "Kvíz E",
+      "imageName": "random5.jpg",
+      "question": {
+        "q": "Jaká planeta je nejblíže Slunci?",
+        "answer": ["Venuše", "Mars", "Merkur", "Země"],
+        "rAnswerIndex": 2
+      }
+    }
+  ]
+}
