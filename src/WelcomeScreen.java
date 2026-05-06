@@ -36,7 +36,13 @@ public class WelcomeScreen {
         });
 
         loadButton.addActionListener(e -> {
-            // TODO: file selection window
+            JFileChooser fc = new JFileChooser();
+            fc.showOpenDialog(frame);
+            if (fc.getSelectedFile() != null) {
+                gameData = GameData.loadGameDataFromFile(fc.getSelectedFile().getAbsolutePath());
+                GameScreen gameScreen = new GameScreen(gameData.card);
+                gameScreen.showApp();
+            }
         });
 
         frame.setVisible(true);

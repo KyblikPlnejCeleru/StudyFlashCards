@@ -1,8 +1,3 @@
-
-
-
-
-
 import com.sun.tools.javac.Main;
 
 import com.google.gson.Gson;
@@ -60,6 +55,16 @@ public class GameData {
            throw new RuntimeException("Chyba při načítání JSON: " + e.getMessage());
         }
 
+    }
+
+    public static GameData loadGameDataFromFile(String filePath) {
+        Gson gson = new Gson();
+
+        try (FileReader reader = new FileReader(filePath)) {
+            return gson.fromJson(reader, GameData.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Chyba při načítání JSON: " + e.getMessage());
+        }
     }
 
 }
