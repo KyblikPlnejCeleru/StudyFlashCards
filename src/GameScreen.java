@@ -118,6 +118,7 @@ public class GameScreen {
     }
 
     private void updateScreen() {
+        if (currentIndex < cards.size()) {
             question.setText(cards.get(currentIndex).getQuestion().getQ());
             answer1.setText(cards.get(currentIndex).getQuestion().getAnswer()[0]);
             answer2.setText(cards.get(currentIndex).getQuestion().getAnswer()[1]);
@@ -125,6 +126,10 @@ public class GameScreen {
             answer4.setText(cards.get(currentIndex).getQuestion().getAnswer()[3]);
             String imageName = cards.get(currentIndex).getImageName();
             ImageIcon img = new ImageIcon(imageName);
-            imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/4, ss.height/3, Image.SCALE_SMOOTH)));
+            imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width / 4, ss.height / 3, Image.SCALE_SMOOTH)));
+        } else {
+            JOptionPane.showMessageDialog(frame, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns());
+            frame.dispose();
+        }
     }
 }
