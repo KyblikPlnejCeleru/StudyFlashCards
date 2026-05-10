@@ -39,6 +39,7 @@ public class GameScreen {
         question.setOpaque(true);
         question.setBackground(ThemeManager.getBackgroundColor());
         question.setForeground(ThemeManager.getForegroundColor());
+        question.setBorder(BorderFactory.createLineBorder(ThemeManager.getForegroundColor(), 2));
 
         question.setFont(new Font("Q", Font.PLAIN,ss.width / 60));
 
