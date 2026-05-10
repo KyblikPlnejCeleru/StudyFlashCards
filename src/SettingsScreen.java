@@ -41,6 +41,8 @@ public class SettingsScreen {
             } else {
                 ThemeManager.setTheme("dark");
             }
+            WelcomeScreen welcomeScreen = new WelcomeScreen();
+            welcomeScreen.showApp();
             frame.dispose();
         });
 

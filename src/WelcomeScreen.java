@@ -28,11 +28,13 @@ public class WelcomeScreen {
             gameData = GameData.loadGameDataFromResources("/GameData.json");
             GameScreen gameScreen = new GameScreen(gameData.card);
             gameScreen.showApp();
+            frame.dispose();
         });
 
         settingsButton.addActionListener(e -> {
             SettingsScreen settingsScreen = new SettingsScreen();
             settingsScreen.showApp();
+            frame.dispose();
         });
 
         loadButton.addActionListener(e -> {
@@ -42,6 +44,7 @@ public class WelcomeScreen {
                 gameData = GameData.loadGameDataFromFile(fc.getSelectedFile().getAbsolutePath());
                 GameScreen gameScreen = new GameScreen(gameData.card);
                 gameScreen.showApp();
+                frame.dispose();
             }
         });
 

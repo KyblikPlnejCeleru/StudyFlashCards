@@ -144,6 +144,8 @@ public class GameScreen {
         } else {
             JOptionPane.showMessageDialog(frame, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns());
             frame.dispose();
+            WelcomeScreen welcomeScreen = new WelcomeScreen();
+            welcomeScreen.showApp();
         }
     }
 }
