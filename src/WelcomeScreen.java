@@ -15,14 +15,24 @@ public class WelcomeScreen {
         frame.setLayout(new GridLayout(3, 1, 5, 5));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBackground(ThemeManager.getBackgroundColor());
+
 
         JButton startButton = new JButton("play");
         JButton settingsButton = new JButton("settings");
         JButton loadButton = new JButton("upload questions");
 
+        startButton.setForeground(ThemeManager.getForegroundColor());
+        startButton.setBackground(ThemeManager.getBackgroundColor());
+        settingsButton.setForeground(ThemeManager.getForegroundColor());
+        settingsButton.setBackground(ThemeManager.getBackgroundColor());
+        loadButton.setForeground(ThemeManager.getForegroundColor());
+        loadButton.setBackground(ThemeManager.getBackgroundColor());
+
         frame.add(startButton);
         frame.add(settingsButton);
         frame.add(loadButton);
+
 
         startButton.addActionListener(e -> {
             gameData = GameData.loadGameDataFromResources("/GameData.json");
