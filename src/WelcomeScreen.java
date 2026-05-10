@@ -15,7 +15,7 @@ public class WelcomeScreen {
         frame.setLayout(new GridLayout(3, 1, 5, 5));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBackground(ThemeManager.getBackgroundColor());
+        frame.getContentPane().setBackground(ThemeManager.getBackgroundColor());
 
 
         JButton startButton = new JButton("play");
