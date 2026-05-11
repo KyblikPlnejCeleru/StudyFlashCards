@@ -1,3 +1,5 @@
+package Brain;
+
 public class Game {
 
     private int correctAnsw;

@@ -1,3 +1,5 @@
+package Brain;
+
 import java.awt.*;
 
 public class ThemeManager {

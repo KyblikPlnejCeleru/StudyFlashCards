@@ -1,3 +1,7 @@
+package Windows;
+
+import Brain.ThemeManager;
+
 import javax.swing.*;
 import java.awt.*;
 

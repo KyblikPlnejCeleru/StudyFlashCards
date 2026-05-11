@@ -1,3 +1,5 @@
+package Properties;
+
 public class Question {
 
     private String q;

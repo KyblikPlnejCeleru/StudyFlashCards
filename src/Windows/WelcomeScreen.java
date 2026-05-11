@@ -1,3 +1,8 @@
+package Windows;
+
+import Brain.GameData;
+import Brain.ThemeManager;
+
 import javax.swing.*;
 import java.awt.*;
 
