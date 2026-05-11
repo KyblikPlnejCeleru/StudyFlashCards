@@ -1,6 +1,10 @@
-import javax.imageio.plugins.jpeg.JPEGImageReadParam;
+package Windows;
+
+
+import Brain.Game;
+import Brain.ThemeManager;
+import Properties.Card;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -32,6 +36,9 @@ public class GameScreen {
         frame.setLayout(new BorderLayout(10,10));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setMinimumSize(new Dimension(800,800));
+        frame.setSize(ss);
+
 
 
         question = new JLabel(cards.get(currentIndex).getQuestion().getQ());
