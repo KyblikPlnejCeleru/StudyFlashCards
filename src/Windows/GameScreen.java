@@ -77,6 +77,10 @@ public class GameScreen {
         answer3.setForeground(ThemeManager.getForegroundColor());
         answer4.setBackground(ThemeManager.getBackgroundColor());
         answer4.setForeground(ThemeManager.getForegroundColor());
+        answer1.setFocusable(false);
+        answer2.setFocusable(false);
+        answer3.setFocusable(false);
+        answer4.setFocusable(false);
 
         answers.add(answer1);
         answers.add(answer2);

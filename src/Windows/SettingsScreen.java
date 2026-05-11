@@ -52,6 +52,7 @@ public class SettingsScreen {
         themeLabel.setForeground(ThemeManager.getForegroundColor());
         themeLabel.setOpaque(true);
         themeLabel.setText(currentTheme);
+        saveButton.setFocusable(false);
 
         saveButton.addActionListener(e -> {
             if (lightButton.isSelected()) {

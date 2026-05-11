@@ -31,6 +31,9 @@ public class WelcomeScreen {
         settingsButton.setBackground(ThemeManager.getBackgroundColor());
         loadButton.setForeground(ThemeManager.getForegroundColor());
         loadButton.setBackground(ThemeManager.getBackgroundColor());
+        startButton.setFocusPainted(false);
+        settingsButton.setFocusable(false);
+        loadButton.setFocusable(false);
 
         frame.add(startButton);
         frame.add(settingsButton);
