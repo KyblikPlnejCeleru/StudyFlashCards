@@ -13,9 +13,7 @@ public class WelcomeScreen {
     public WelcomeScreen() {
         this.frame = new JFrame("FlashCards");
         this.gameData = new GameData();
-    }
 
-    public void showApp() {
         frame.setSize(300, 200);
         frame.setLayout(new GridLayout(3, 1, 5, 5));
         frame.setLocationRelativeTo(null);
@@ -62,7 +60,9 @@ public class WelcomeScreen {
                 frame.dispose();
             }
         });
+    }
 
+    public void showApp() {
         frame.setVisible(true);
     }
 }

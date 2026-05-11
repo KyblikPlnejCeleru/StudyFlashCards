@@ -10,9 +10,7 @@ public class SettingsScreen {
 
     public SettingsScreen() {
         this.frame = new JFrame("Settings");
-    }
 
-    public void showApp() {
         frame.setSize(300, 200);
         frame.setLayout(new GridLayout(4, 1, 6, 7));
         frame.setLocationRelativeTo(null);
@@ -65,7 +63,9 @@ public class SettingsScreen {
             welcomeScreen.showApp();
             frame.dispose();
         });
+    }
 
+    public void showApp() {
         frame.setVisible(true);
     }
 }

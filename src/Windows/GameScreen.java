@@ -27,11 +27,8 @@ public class GameScreen {
         this.frame = new JFrame("FlashCards by romek");
         this.cards = cards;
         this.currentIndex = 0;
-        frame.setVisible(true);
         this.game = new Game();
-    }
 
-    public void showApp() {
         frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         frame.setLayout(new BorderLayout(10,10));
         frame.setLocationRelativeTo(null);
@@ -136,6 +133,10 @@ public class GameScreen {
             updateScreen();
         });
 
+    }
+
+    public void showApp() {
+        frame.setVisible(true);
     }
 
     private void updateScreen() {
