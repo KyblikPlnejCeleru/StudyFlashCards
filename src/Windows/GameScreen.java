@@ -19,7 +19,7 @@ public class GameScreen {
     private int currentIndex;
     private Game game;
     private JLabel question;
-    private JButton answer1, answer2, answer3, answer4;
+    private JButton[] answer;
     private JLabel imageLabel;
 
 
@@ -28,6 +28,7 @@ public class GameScreen {
         this.cards = cards;
         this.currentIndex = 0;
         this.game = new Game();
+        this.answer = new JButton[4];
 
         frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         frame.setLayout(new BorderLayout(10,10));
@@ -56,42 +57,27 @@ public class GameScreen {
         answers.setBackground(ThemeManager.getBackgroundColor());
 
 
-        answer1 = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[0]);
-        answer2 = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[1]);
-        answer3 = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[2]);
-        answer4 = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[3]);
+        answer[0] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[0]);
+        answer[1] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[1]);
+        answer[2] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[2]);
+        answer[3] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[3]);
 
         Font answerFont = new Font("A", Font.PLAIN, ss.width / 80);
 
-        answer1.setFont(answerFont);
-        answer2.setFont(answerFont);
-        answer3.setFont(answerFont);
-        answer4.setFont(answerFont);
 
-
-        answer1.setBackground(ThemeManager.getBackgroundColor());
-        answer1.setForeground(ThemeManager.getForegroundColor());
-        answer2.setBackground(ThemeManager.getBackgroundColor());
-        answer2.setForeground(ThemeManager.getForegroundColor());
-        answer3.setBackground(ThemeManager.getBackgroundColor());
-        answer3.setForeground(ThemeManager.getForegroundColor());
-        answer4.setBackground(ThemeManager.getBackgroundColor());
-        answer4.setForeground(ThemeManager.getForegroundColor());
-        answer1.setFocusable(false);
-        answer2.setFocusable(false);
-        answer3.setFocusable(false);
-        answer4.setFocusable(false);
-
-        answers.add(answer1);
-        answers.add(answer2);
-        answers.add(answer3);
-        answers.add(answer4);
+        for (int i = 0; i < 4; i++) {
+            answer[i].setFont(answerFont);
+            answer[i].setBackground(ThemeManager.getBackgroundColor());
+            answer[i].setForeground(ThemeManager.getForegroundColor());
+            answer[i].setFocusable(false);
+            answers.add(answer[i]);
+        }
 
 
         String imageName = cards.get(currentIndex).getImageName();
         ImageIcon img = new ImageIcon(imageName);
         imageLabel = new JLabel();
-        imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/4,ss.height/3, Image.SCALE_SMOOTH)));
+        imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/2, ss.height/2, Image.SCALE_SMOOTH)));
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         imageLabel.setVerticalAlignment(JLabel.CENTER);
         frame.add(imageLabel,BorderLayout.CENTER);
@@ -100,41 +86,53 @@ public class GameScreen {
 
         frame.getContentPane().setBackground(ThemeManager.getBackgroundColor());
 
-        answer1.addActionListener(e -> {
+        answer[0].addActionListener(e -> {
             if (cards.get(currentIndex).correction(0)){
+                answer[0].setBackground(Color.GREEN);
                 game.setCorrectAnsw(game.getCorrectAnsw()+1);
             } else {
+                answer[0].setBackground(Color.RED);
+                answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
                 game.setWrongAns(game.getWrongAns()+1);
             }
             currentIndex++;
-            updateScreen();
+            waitTimer(0);
         });
-        answer2.addActionListener(e -> {
+        answer[1].addActionListener(e -> {
             if (cards.get(currentIndex).correction(1)){
+                answer[1].setBackground(Color.GREEN);
                 game.setCorrectAnsw(game.getCorrectAnsw()+1);
             } else {
+                answer[1].setBackground(Color.RED);
+                answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
                 game.setWrongAns(game.getWrongAns()+1);
             }
             currentIndex++;
-            updateScreen();
+            waitTimer(1);
         });
-        answer3.addActionListener(e -> {
+        answer[2].addActionListener(e -> {
             if (cards.get(currentIndex).correction(2)){
+                answer[2].setBackground(Color.GREEN);
                 game.setCorrectAnsw(game.getCorrectAnsw()+1);
             } else {
+                answer[2].setBackground(Color.RED);
+                answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
                 game.setWrongAns(game.getWrongAns()+1);
             }
             currentIndex++;
-            updateScreen();
+            waitTimer(2);
         });
-        answer4.addActionListener(e -> {
+        answer[3].addActionListener(e -> {
             if (cards.get(currentIndex).correction(3)){
+                answer[3].setBackground(Color.GREEN);
                 game.setCorrectAnsw(game.getCorrectAnsw()+1);
             } else {
+                answer[3].setBackground(Color.RED);
+                answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
                 game.setWrongAns(game.getWrongAns()+1);
             }
             currentIndex++;
-            updateScreen();
+            waitTimer(3);
         });
 
     }
@@ -143,21 +141,36 @@ public class GameScreen {
         frame.setVisible(true);
     }
 
-    private void updateScreen() {
+    private void updateScreen(int c) {
         if (currentIndex < cards.size()) {
-            question.setText(cards.get(currentIndex).getQuestion().getQ());
-            answer1.setText(cards.get(currentIndex).getQuestion().getAnswer()[0]);
-            answer2.setText(cards.get(currentIndex).getQuestion().getAnswer()[1]);
-            answer3.setText(cards.get(currentIndex).getQuestion().getAnswer()[2]);
-            answer4.setText(cards.get(currentIndex).getQuestion().getAnswer()[3]);
-            String imageName = cards.get(currentIndex).getImageName();
+            question.setText(cards.get(c).getQuestion().getQ());
+            updateButtons(c);
+            for (int i = 0; i < 4; i++) {
+                answer[i].setBackground(ThemeManager.getBackgroundColor());
+            }
+            String imageName = cards.get(c).getImageName();
             ImageIcon img = new ImageIcon(imageName);
-            imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width / 4, ss.height / 3, Image.SCALE_SMOOTH)));
+            imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/2, ss.height/2, Image.SCALE_SMOOTH)));
         } else {
             JOptionPane.showMessageDialog(frame, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns());
             frame.dispose();
             WelcomeScreen welcomeScreen = new WelcomeScreen();
             welcomeScreen.showApp();
         }
+    }
+    public void updateButtons(int c){
+        for (int i = 0; i <4 ; i++) {
+            answer[i].setText(cards.get(c).getQuestion().getAnswer()[i]);
+        }
+    }
+
+    // waitTimer method was made with help of AI - claude.ai
+    public void waitTimer(int index){
+        javax.swing.Timer timer = new javax.swing.Timer(500, event -> {
+            answer[index].setBackground(ThemeManager.getBackgroundColor());
+            updateScreen(currentIndex);
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 }
