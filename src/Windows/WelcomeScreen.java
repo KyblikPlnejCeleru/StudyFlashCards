@@ -21,9 +21,9 @@ public class WelcomeScreen {
         frame.getContentPane().setBackground(ThemeManager.getBackgroundColor());
 
 
-        JButton startButton = new JButton("play");
-        JButton settingsButton = new JButton("settings");
-        JButton loadButton = new JButton("upload questions");
+        RoundedButton startButton = new RoundedButton("play");
+        RoundedButton settingsButton = new RoundedButton("settings");
+        RoundedButton loadButton = new RoundedButton("upload questions");
 
         startButton.setForeground(ThemeManager.getForegroundColor());
         startButton.setBackground(ThemeManager.getBackgroundColor());

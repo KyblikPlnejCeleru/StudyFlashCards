@@ -20,7 +20,7 @@ public class SettingsScreen {
         JLabel themeLabel = new JLabel("theme");
         JRadioButton lightButton = new JRadioButton("light");
         JRadioButton darkButton = new JRadioButton("dark");
-        JButton saveButton = new JButton("save");
+        RoundedButton saveButton = new RoundedButton("save");
 
         ButtonGroup group = new ButtonGroup();
         group.add(lightButton);
