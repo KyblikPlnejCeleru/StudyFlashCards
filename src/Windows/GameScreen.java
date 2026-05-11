@@ -95,6 +95,7 @@ public class GameScreen {
                 answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
                 game.setWrongAns(game.getWrongAns()+1);
             }
+            disableButtons();
             currentIndex++;
             waitTimer(0);
         });
@@ -107,6 +108,7 @@ public class GameScreen {
                 answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
                 game.setWrongAns(game.getWrongAns()+1);
             }
+            disableButtons();
             currentIndex++;
             waitTimer(1);
         });
@@ -119,6 +121,7 @@ public class GameScreen {
                 answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
                 game.setWrongAns(game.getWrongAns()+1);
             }
+            disableButtons();
             currentIndex++;
             waitTimer(2);
         });
@@ -131,6 +134,7 @@ public class GameScreen {
                 answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
                 game.setWrongAns(game.getWrongAns()+1);
             }
+            disableButtons();
             currentIndex++;
             waitTimer(3);
         });
@@ -164,11 +168,24 @@ public class GameScreen {
         }
     }
 
+    public void disableButtons(){
+        for (int i = 0; i <4 ; i++) {
+            answer[i].setEnabled(false);
+        }
+    }
+
+    public void enableButtons(){
+        for (int i = 0; i <4 ; i++) {
+            answer[i].setEnabled(true);
+        }
+    }
+
     // waitTimer method was made with help of AI - claude.ai
     public void waitTimer(int index){
         javax.swing.Timer timer = new javax.swing.Timer(500, event -> {
             answer[index].setBackground(ThemeManager.getBackgroundColor());
             updateScreen(currentIndex);
+            enableButtons();
         });
         timer.setRepeats(false);
         timer.start();
