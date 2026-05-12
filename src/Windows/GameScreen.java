@@ -156,7 +156,7 @@ public class GameScreen {
             ImageIcon img = new ImageIcon(imageName);
             imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/2, ss.height/2, Image.SCALE_SMOOTH)));
         } else {
-            JOptionPane.showMessageDialog(frame, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns());
+            JOptionPane.showMessageDialog(frame, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns(),"Game Over", JOptionPane.INFORMATION_MESSAGE);
             frame.dispose();
             WelcomeScreen welcomeScreen = new WelcomeScreen();
             welcomeScreen.showApp();
