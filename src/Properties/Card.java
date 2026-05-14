@@ -3,14 +3,14 @@ package Properties;
 public class Card {
 
     private String name;
-    private String imageName;
+    private String imagePath;
     private Question question;
 
     private boolean isCorrect;
 
-    public Card(String name, String imageName, Question question) {
+    public Card(String name, String imagePath, Question question) {
         this.name = name;
-        this.imageName = imageName;
+        this.imagePath = imagePath;
         this.question = question;
     }
 
@@ -23,7 +23,7 @@ public class Card {
 
 
     public String getImageName() {
-        return imageName;
+        return imagePath;
     }
 
 

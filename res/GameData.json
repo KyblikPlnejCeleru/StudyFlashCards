@@ -2,7 +2,7 @@
   "card": [
     {
       "name": "Otázka 1",
-      "imageName": "test.jpg",
+      "imagePath": "res/test.jpg",
       "question": {
         "q": "Kolik je 2 + 2?",
         "answer": ["1", "2", "3", "4"],
@@ -11,7 +11,7 @@
     },
     {
       "name": "Otázka 2",
-      "imageName": "test2.jpg",
+      "imagePath": "res/test2.jpg",
       "question": {
         "q": "Hlavní město ČR je?",
         "answer": ["Brno", "Praha", "Ostrava", "Plzeň"],
@@ -20,7 +20,7 @@
     },
     {
       "name": "Otázka 3",
-      "imageName": "test3.jpg",
+      "imagePath": "res/test3.jpg",
       "question": {
         "q": "Jaký jazyk používáš?",
         "answer": ["Python", "Java", "C++", "Rust"],
