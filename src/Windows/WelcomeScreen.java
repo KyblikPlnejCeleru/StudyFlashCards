@@ -41,7 +41,7 @@ public class WelcomeScreen {
 
 
         startButton.addActionListener(e -> {
-            gameData = GameData.loadGameDataFromResources("/GameData.json");
+            gameData = GameData.loadGameDataFromFile("/GameData.json");
             GameScreen gameScreen = new GameScreen(gameData.card);
             gameScreen.showApp();
             frame.dispose();
