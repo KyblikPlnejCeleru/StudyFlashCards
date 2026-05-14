@@ -33,14 +33,24 @@ public class GameData {
     }
 
 
-    public static GameData loadGameDataFromFile(String filePath) {
+    public static GameData loadFromPath(String resourcePath) {
+        //Vytvoření objektu pro práci s JSON souborem
         Gson gson = new Gson();
 
-        try (FileReader reader = new FileReader(filePath)) {
-            return gson.fromJson(reader, GameData.class);
+        //Načtení souboru gamedata.json, musí být ve složce res/resources, ta musí být označena jako resource složka projektu
+
+        InputStream input = GameData.class.getResourceAsStream(resourcePath);
+        if (input == null){
+            throw new RuntimeException();
+        }
+        try (input) {
+            //Přečte celý JSON a vytvoří instanci GameData, naplní vlastnosti podle názvů klíčů v JSONU, vrátí se hotová třída GameData
+            return gson.fromJson(new InputStreamReader(input, StandardCharsets.UTF_8), GameData.class);
+
         } catch (Exception e) {
             throw new RuntimeException("Chyba při načítání JSON: " + e.getMessage());
         }
+
     }
 
 }
