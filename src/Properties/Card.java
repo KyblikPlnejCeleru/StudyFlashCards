@@ -16,19 +16,8 @@ public class Card {
 
 
     public boolean correction(int index){
-        if (index==question.getrAnswerIndex()){
-            return true;
-        }
-        return false;
+        return index == question.getrAnswerIndex();
 
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 
@@ -37,23 +26,10 @@ public class Card {
         return imageName;
     }
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
-    }
 
     public Question getQuestion() {
         return question;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
 
-    public boolean isCorrect() {
-        return isCorrect;
-    }
-
-    public void setCorrect(boolean correct) {
-        isCorrect = correct;
-    }
 }
