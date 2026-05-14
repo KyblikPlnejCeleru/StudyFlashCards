@@ -67,7 +67,10 @@ public class WelcomeScreen {
     }
 
     public void showApp() {
+        frame.setBackground(ThemeManager.getBackgroundColor());
+        frame.setForeground(ThemeManager.getForegroundColor());
         frame.setVisible(true);
+
     }
     public static WelcomeScreen getInstance() {
         if (instance == null) {
