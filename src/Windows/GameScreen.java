@@ -155,8 +155,7 @@ public class GameScreen {
         } else {
             JOptionPane.showMessageDialog(frame, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns(),"Game Over", JOptionPane.INFORMATION_MESSAGE);
             frame.dispose();
-            WelcomeScreen welcomeScreen = new WelcomeScreen();
-            welcomeScreen.showApp();
+            WelcomeScreen.getInstance().showApp();
         }
     }
     public void updateButtons(int c){

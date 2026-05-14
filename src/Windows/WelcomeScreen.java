@@ -9,6 +9,7 @@ import java.awt.*;
 public class WelcomeScreen {
     private JFrame frame;
     private GameData gameData;
+    private static WelcomeScreen instance;
 
     public WelcomeScreen() {
         this.frame = new JFrame("FlashCards");
@@ -41,7 +42,7 @@ public class WelcomeScreen {
 
 
         startButton.addActionListener(e -> {
-            gameData = GameData.loadGameDataFromFile("/GameData.json");
+            gameData = GameData.loadFromPath("/GameData.json");
             GameScreen gameScreen = new GameScreen(gameData.card);
             gameScreen.showApp();
             frame.dispose();
@@ -57,7 +58,7 @@ public class WelcomeScreen {
             JFileChooser fc = new JFileChooser();
             fc.showOpenDialog(frame);
             if (fc.getSelectedFile() != null) {
-                gameData = GameData.loadGameDataFromFile(fc.getSelectedFile().getAbsolutePath());
+                gameData = GameData.loadFromPath(fc.getSelectedFile().getAbsolutePath());
                 GameScreen gameScreen = new GameScreen(gameData.card);
                 gameScreen.showApp();
                 frame.dispose();
@@ -67,5 +68,11 @@ public class WelcomeScreen {
 
     public void showApp() {
         frame.setVisible(true);
+    }
+    public static WelcomeScreen getInstance() {
+        if (instance == null) {
+            instance = new WelcomeScreen();
+        }
+        return instance;
     }
 }
