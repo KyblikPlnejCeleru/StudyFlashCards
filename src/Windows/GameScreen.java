@@ -57,15 +57,12 @@ public class GameScreen {
         answers.setBackground(ThemeManager.getBackgroundColor());
 
 
-        answer[0] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[0]);
-        answer[1] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[1]);
-        answer[2] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[2]);
-        answer[3] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[3]);
 
         Font answerFont = new Font("A", Font.PLAIN, ss.width / 80);
 
 
         for (int i = 0; i < 4; i++) {
+            answer[i] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[i]);
             answer[i].setFont(answerFont);
             answer[i].setBackground(ThemeManager.getBackgroundColor());
             answer[i].setForeground(ThemeManager.getForegroundColor());
