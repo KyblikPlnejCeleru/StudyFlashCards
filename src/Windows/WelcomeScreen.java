@@ -10,21 +10,20 @@ public class WelcomeScreen {
     private JFrame frame;
     private GameData gameData;
     private static WelcomeScreen instance;
+    private RoundedButton startButton, settingsButton, loadButton;
 
     public WelcomeScreen() {
         this.frame = new JFrame("FlashCards");
         this.gameData = new GameData();
+        this.startButton = new RoundedButton("play");
+        this.settingsButton = new RoundedButton("settings");
+        this.loadButton = new RoundedButton("upload questions");
 
         frame.setSize(300, 200);
         frame.setLayout(new GridLayout(3, 1, 5, 5));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(ThemeManager.getBackgroundColor());
-
-
-        RoundedButton startButton = new RoundedButton("play");
-        RoundedButton settingsButton = new RoundedButton("settings");
-        RoundedButton loadButton = new RoundedButton("upload questions");
+        themeChanger();
 
         startButton.setForeground(ThemeManager.getForegroundColor());
         startButton.setBackground(ThemeManager.getBackgroundColor());
@@ -66,9 +65,19 @@ public class WelcomeScreen {
         });
     }
 
+    public void themeChanger(){
+        frame.getContentPane().setBackground(ThemeManager.getBackgroundColor());
+        frame.getContentPane().setForeground(ThemeManager.getForegroundColor());
+        startButton.setForeground(ThemeManager.getForegroundColor());
+        startButton.setBackground(ThemeManager.getBackgroundColor());
+        settingsButton.setForeground(ThemeManager.getForegroundColor());
+        settingsButton.setBackground(ThemeManager.getBackgroundColor());
+        loadButton.setForeground(ThemeManager.getForegroundColor());
+        loadButton.setBackground(ThemeManager.getBackgroundColor());
+    }
+
     public void showApp() {
-        frame.setBackground(ThemeManager.getBackgroundColor());
-        frame.setForeground(ThemeManager.getForegroundColor());
+        themeChanger();
         frame.setVisible(true);
 
     }
