@@ -5,16 +5,16 @@ import Brain.ThemeManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.Collections;
 
-public class WelcomeScreen {
-    private JFrame frame;
+public class WelcomeScreen extends JFrame{
     private GameData gameData;
     private static WelcomeScreen instance;
     private RoundedButton startButton, settingsButton, loadButton;
 
     public WelcomeScreen() {
-        this.frame = new JFrame("FlashCards");
+        setTitle("Welcome");
         this.gameData = new GameData();
         this.startButton = new RoundedButton("Play");
         this.settingsButton = new RoundedButton("Settings");
@@ -22,10 +22,10 @@ public class WelcomeScreen {
 
         Font font = new Font("a",Font.PLAIN,15);
 
-        frame.setSize(300, 200);
-        frame.setLayout(new GridLayout(3, 1, 5, 5));
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(300, 200);
+        setLayout(new GridLayout(3, 1, 5, 5));
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         themeChanger();
 
         startButton.setForeground(ThemeManager.getForegroundColor());
@@ -41,9 +41,9 @@ public class WelcomeScreen {
         settingsButton.setFont(font);
         loadButton.setFont(font);
 
-        frame.add(startButton);
-        frame.add(settingsButton);
-        frame.add(loadButton);
+        add(startButton);
+        add(settingsButton);
+        add(loadButton);
 
 
         startButton.addActionListener(e -> {
@@ -51,32 +51,32 @@ public class WelcomeScreen {
             Collections.shuffle(gameData.getCards());
             GameScreen gameScreen = new GameScreen(gameData.card);
             gameScreen.showApp();
-            frame.dispose();
+            dispose();
         });
 
         settingsButton.addActionListener(e -> {
             SettingsScreen settingsScreen = new SettingsScreen();
             settingsScreen.showApp();
-            frame.dispose();
+            dispose();
         });
 
         loadButton.addActionListener(e -> {
             JFileChooser fc = new JFileChooser();
-            fc.showOpenDialog(frame);
+            fc.showOpenDialog(this);
             if (fc.getSelectedFile() != null) {
                 gameData = GameData.loadGameDataFromFile(fc.getSelectedFile().getAbsolutePath(),fc);
                 if (!(gameData==null)){
                     GameScreen gameScreen = new GameScreen(gameData.getCards());
                     gameScreen.showApp();
-                    frame.dispose();
+                    dispose();
                 }
             }
         });
     }
 
     public void themeChanger(){
-        frame.getContentPane().setBackground(ThemeManager.getBackgroundColor());
-        frame.getContentPane().setForeground(ThemeManager.getForegroundColor());
+        getContentPane().setBackground(ThemeManager.getBackgroundColor());
+        getContentPane().setForeground(ThemeManager.getForegroundColor());
         startButton.setForeground(ThemeManager.getForegroundColor());
         startButton.setBackground(ThemeManager.getBackgroundColor());
         settingsButton.setForeground(ThemeManager.getForegroundColor());
@@ -87,7 +87,7 @@ public class WelcomeScreen {
 
     public void showApp() {
         themeChanger();
-        frame.setVisible(true);
+        setVisible(true);
 
     }
     public static WelcomeScreen getInstance() {

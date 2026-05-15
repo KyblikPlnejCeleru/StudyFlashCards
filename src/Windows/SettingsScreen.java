@@ -5,17 +5,16 @@ import Brain.ThemeManager;
 import javax.swing.*;
 import java.awt.*;
 
-public class SettingsScreen {
-    private JFrame frame;
+public class SettingsScreen extends JFrame{
 
     public SettingsScreen() {
-        this.frame = new JFrame("Settings");
+        setTitle("Settings");
 
-        frame.setSize(300, 200);
-        frame.setLayout(new GridLayout(4, 1, 6, 7));
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.getContentPane().setBackground(ThemeManager.getBackgroundColor());
+        setSize(300, 200);
+        setLayout(new GridLayout(4, 1, 6, 7));
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        getContentPane().setBackground(ThemeManager.getBackgroundColor());
 
         JLabel themeLabel = new JLabel("theme");
         JRadioButton lightButton = new JRadioButton("light");
@@ -33,10 +32,10 @@ public class SettingsScreen {
             lightButton.setSelected(true);
         }
 
-        frame.add(themeLabel);
-        frame.add(lightButton);
-        frame.add(darkButton);
-        frame.add(saveButton);
+        add(themeLabel);
+        add(lightButton);
+        add(darkButton);
+        add(saveButton);
 
 
         lightButton.setBackground(ThemeManager.getBackgroundColor());
@@ -61,11 +60,11 @@ public class SettingsScreen {
                 ThemeManager.setTheme("dark");
             }
             WelcomeScreen.getInstance().showApp();
-            frame.dispose();
+            dispose();
         });
     }
 
     public void showApp() {
-        frame.setVisible(true);
+        setVisible(true);
     }
 }

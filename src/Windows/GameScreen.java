@@ -10,34 +10,36 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class GameScreen {
+public class GameScreen extends JFrame{
 
 
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
 
 
-    private JFrame frame;
+
     private ArrayList<Card> cards;
     private int currentIndex;
     private Game game;
     private JLabel question;
     private RoundedButton[] answer;
     private JLabel imageLabel;
+    private JDialog jDialog;
 
 
     public GameScreen(ArrayList<Card> cards) {
-        this.frame = new JFrame("FlashCards by romek");
+        setTitle("StudyFlaSHcARDS");
         this.cards = cards;
         this.currentIndex = 0;
         this.game = new Game();
         this.answer = new RoundedButton[4];
+        this.jDialog = new JDialog(this);
 
-        frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-        frame.setLayout(new BorderLayout(10,10));
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setMinimumSize(new Dimension(800,800));
-        frame.setSize(ss);
+        setExtendedState(Frame.MAXIMIZED_BOTH);
+        setLayout(new BorderLayout(10,10));
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setMinimumSize(new Dimension(800,800));
+        setSize(ss);
 
 
 
@@ -62,6 +64,9 @@ public class GameScreen {
 
         Font answerFont = new Font("A", Font.PLAIN, ss.width / 80);
 
+        jDialog.getContentPane().setBackground(ThemeManager.getBackgroundColor());
+        jDialog.getContentPane().setForeground(ThemeManager.getForegroundColor());
+
 
         for (int i = 0; i < 4; i++) {
             answer[i] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[i]);
@@ -79,11 +84,11 @@ public class GameScreen {
         imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/2, ss.height/2, Image.SCALE_SMOOTH)));
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         imageLabel.setVerticalAlignment(JLabel.CENTER);
-        frame.add(imageLabel,BorderLayout.CENTER);
-        frame.add(question,BorderLayout.NORTH);
-        frame.add(answers,BorderLayout.SOUTH);
+        add(imageLabel,BorderLayout.CENTER);
+        add(question,BorderLayout.NORTH);
+        add(answers,BorderLayout.SOUTH);
 
-        frame.getContentPane().setBackground(ThemeManager.getBackgroundColor());
+        getContentPane().setBackground(ThemeManager.getBackgroundColor());
         for (int i = 0; i < answer.length; i++) {
             int finalI = i;
             answer[i].addActionListener(e -> {
@@ -104,7 +109,7 @@ public class GameScreen {
     }
 
     public void showApp() {
-        frame.setVisible(true);
+        setVisible(true);
     }
 
     private void updateScreen(int c) {
@@ -119,7 +124,8 @@ public class GameScreen {
             imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/2, ss.height/2, Image.SCALE_SMOOTH)));
         } else {
 //            JOptionPane.showMessageDialog(frame, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns(),"Game Over", JOptionPane.INFORMATION_MESSAGE);
-            frame.dispose();
+            jDialog.setEnabled(true);
+            dispose();
             WelcomeScreen.getInstance().showApp();
         }
     }
