@@ -84,59 +84,22 @@ public class GameScreen {
         frame.add(answers,BorderLayout.SOUTH);
 
         frame.getContentPane().setBackground(ThemeManager.getBackgroundColor());
-
-        answer[0].addActionListener(e -> {
-            if (cards.get(currentIndex).correction(0)){
-                answer[0].setBackground(Color.GREEN);
-                game.setCorrectAnsw(game.getCorrectAnsw()+1);
-            } else {
-                answer[0].setBackground(Color.RED);
-                answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
-                game.setWrongAns(game.getWrongAns()+1);
-            }
-            disableButtons();
-            currentIndex++;
-            waitTimer(0);
-        });
-        answer[1].addActionListener(e -> {
-            if (cards.get(currentIndex).correction(1)){
-                answer[1].setBackground(Color.GREEN);
-                game.setCorrectAnsw(game.getCorrectAnsw()+1);
-            } else {
-                answer[1].setBackground(Color.RED);
-                answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
-                game.setWrongAns(game.getWrongAns()+1);
-            }
-            disableButtons();
-            currentIndex++;
-            waitTimer(1);
-        });
-        answer[2].addActionListener(e -> {
-            if (cards.get(currentIndex).correction(2)){
-                answer[2].setBackground(Color.GREEN);
-                game.setCorrectAnsw(game.getCorrectAnsw()+1);
-            } else {
-                answer[2].setBackground(Color.RED);
-                answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
-                game.setWrongAns(game.getWrongAns()+1);
-            }
-            disableButtons();
-            currentIndex++;
-            waitTimer(2);
-        });
-        answer[3].addActionListener(e -> {
-            if (cards.get(currentIndex).correction(3)){
-                answer[3].setBackground(Color.GREEN);
-                game.setCorrectAnsw(game.getCorrectAnsw()+1);
-            } else {
-                answer[3].setBackground(Color.RED);
-                answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
-                game.setWrongAns(game.getWrongAns()+1);
-            }
-            disableButtons();
-            currentIndex++;
-            waitTimer(3);
-        });
+        for (int i = 0; i < answer.length; i++) {
+            int finalI = i;
+            answer[i].addActionListener(e -> {
+                if (cards.get(currentIndex).correction(finalI)){
+                    answer[finalI].setBackground(Color.GREEN);
+                    game.setCorrectAnsw(game.getCorrectAnsw()+1);
+                } else {
+                    answer[finalI].setBackground(Color.RED);
+                    answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
+                    game.setWrongAns(game.getWrongAns()+1);
+                }
+                disableButtons();
+                currentIndex++;
+                waitTimer(finalI);
+            });
+        }
 
     }
 
@@ -155,7 +118,7 @@ public class GameScreen {
             ImageIcon img = new ImageIcon(imageName);
             imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/2, ss.height/2, Image.SCALE_SMOOTH)));
         } else {
-            JOptionPane.showMessageDialog(frame, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns(),"Game Over", JOptionPane.INFORMATION_MESSAGE);
+//            JOptionPane.showMessageDialog(frame, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns(),"Game Over", JOptionPane.INFORMATION_MESSAGE);
             frame.dispose();
             WelcomeScreen.getInstance().showApp();
         }
