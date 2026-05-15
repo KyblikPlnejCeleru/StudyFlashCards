@@ -15,9 +15,9 @@ public class WelcomeScreen {
     public WelcomeScreen() {
         this.frame = new JFrame("FlashCards");
         this.gameData = new GameData();
-        this.startButton = new RoundedButton("play");
-        this.settingsButton = new RoundedButton("settings");
-        this.loadButton = new RoundedButton("upload questions");
+        this.startButton = new RoundedButton("Play");
+        this.settingsButton = new RoundedButton("Settings");
+        this.loadButton = new RoundedButton("Upload questions");
 
         frame.setSize(300, 200);
         frame.setLayout(new GridLayout(3, 1, 5, 5));
@@ -57,10 +57,12 @@ public class WelcomeScreen {
             JFileChooser fc = new JFileChooser();
             fc.showOpenDialog(frame);
             if (fc.getSelectedFile() != null) {
-                gameData = GameData.loadGameDataFromFile(fc.getSelectedFile().getAbsolutePath());
-                GameScreen gameScreen = new GameScreen(gameData.card);
-                gameScreen.showApp();
-                frame.dispose();
+                gameData = GameData.loadGameDataFromFile(fc.getSelectedFile().getAbsolutePath(),fc);
+                if (!(gameData==null)){
+                    GameScreen gameScreen = new GameScreen(gameData.getCards());
+                    gameScreen.showApp();
+                    frame.dispose();
+                }
             }
         });
     }

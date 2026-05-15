@@ -7,6 +7,8 @@ import Properties.Card;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class GameScreen {
 

@@ -5,11 +5,13 @@ import Properties.Card;
 import com.google.gson.Gson;
 
 
+import javax.swing.*;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -57,14 +59,15 @@ public class GameData {
 
     }
 
-    public static GameData loadGameDataFromFile(String filePath) {
+    public static GameData loadGameDataFromFile(String filePath,JFileChooser fc) {
         Gson gson = new Gson();
 
         try (FileReader reader = new FileReader(filePath)) {
             return gson.fromJson(reader, GameData.class);
         } catch (Exception e) {
-            throw new RuntimeException("Chyba při načítání JSON: " + e.getMessage());
+            JOptionPane.showMessageDialog(fc,"CHYBA ");
         }
+        return null;
     }
 
 }
