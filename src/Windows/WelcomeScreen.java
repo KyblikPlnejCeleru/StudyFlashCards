@@ -20,6 +20,8 @@ public class WelcomeScreen {
         this.settingsButton = new RoundedButton("Settings");
         this.loadButton = new RoundedButton("Upload questions");
 
+        Font font = new Font("a",Font.PLAIN,15);
+
         frame.setSize(300, 200);
         frame.setLayout(new GridLayout(3, 1, 5, 5));
         frame.setLocationRelativeTo(null);
@@ -35,6 +37,9 @@ public class WelcomeScreen {
         startButton.setFocusPainted(false);
         settingsButton.setFocusable(false);
         loadButton.setFocusable(false);
+        startButton.setFont(font);
+        settingsButton.setFont(font);
+        loadButton.setFont(font);
 
         frame.add(startButton);
         frame.add(settingsButton);
