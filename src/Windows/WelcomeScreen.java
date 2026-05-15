@@ -86,6 +86,7 @@ public class WelcomeScreen extends JFrame{
     }
 
     public void showApp() {
+        ThemeManager.applyTheme();
         setVisible(true);
 
     }
