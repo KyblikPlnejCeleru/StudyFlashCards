@@ -62,14 +62,16 @@ public class WelcomeScreen extends JFrame{
 
         loadButton.addActionListener(e -> {
             JFileChooser fc = new JFileChooser();
-            fc.showOpenDialog(this);
-            if (fc.getSelectedFile() != null) {
+            int file = fc.showOpenDialog(this);
+            if (file == JFileChooser.APPROVE_OPTION) {
                 gameData = GameData.loadGameDataFromFile(fc.getSelectedFile().getAbsolutePath(),fc);
                 if (!(gameData==null)){
                     GameScreen gameScreen = new GameScreen(gameData.getCards());
                     gameScreen.showApp();
                     dispose();
                 }
+            } else if (file == JFileChooser.CANCEL_OPTION) {
+                JOptionPane.showMessageDialog(fc,"Cmon select something im hunrgy");
             }
         });
     }

@@ -4,6 +4,8 @@ package Windows;
 import Brain.Game;
 import Brain.ThemeManager;
 import Properties.Card;
+import org.w3c.dom.ls.LSOutput;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class GameScreen extends JFrame{
     private RoundedButton[] answer;
     private JLabel imageLabel;
     private JDialog jDialog;
+
 
 
     public GameScreen(ArrayList<Card> cards) {
@@ -49,7 +52,6 @@ public class GameScreen extends JFrame{
         question.setBackground(ThemeManager.getBackgroundColor());
         question.setForeground(ThemeManager.getForegroundColor());
         question.setBorder(BorderFactory.createLineBorder(ThemeManager.getForegroundColor(), 2));
-
         question.setFont(new Font("Q", Font.PLAIN,ss.width / 60));
 
         question.setHorizontalAlignment(JLabel.CENTER);
@@ -87,6 +89,7 @@ public class GameScreen extends JFrame{
         add(imageLabel,BorderLayout.CENTER);
         add(question,BorderLayout.NORTH);
         add(answers,BorderLayout.SOUTH);
+        pack();
 
         getContentPane().setBackground(ThemeManager.getBackgroundColor());
         for (int i = 0; i < answer.length; i++) {
