@@ -14,7 +14,6 @@ public class SettingsScreen extends JFrame{
         setLayout(new GridLayout(4, 1, 6, 7));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        getContentPane().setBackground(ThemeManager.getBackgroundColor());
 
         JLabel themeLabel = new JLabel("theme");
         JRadioButton lightButton = new JRadioButton("light");
@@ -36,22 +35,10 @@ public class SettingsScreen extends JFrame{
         add(lightButton);
         add(darkButton);
         add(saveButton);
+        ThemeManager.applyTheme();
 
 
-        lightButton.setBackground(ThemeManager.getBackgroundColor());
-        lightButton.setForeground(ThemeManager.getForegroundColor());
-        lightButton.setOpaque(true);
-        darkButton.setBackground(ThemeManager.getBackgroundColor());
-        darkButton.setForeground(ThemeManager.getForegroundColor());
-        darkButton.setOpaque(true);
-        saveButton.setBackground(ThemeManager.getBackgroundColor());
-        saveButton.setForeground(ThemeManager.getForegroundColor());
-        saveButton.setOpaque(true);
-        themeLabel.setBackground(ThemeManager.getBackgroundColor());
-        themeLabel.setForeground(ThemeManager.getForegroundColor());
-        themeLabel.setOpaque(true);
-        themeLabel.setText(currentTheme);
-        saveButton.setFocusable(false);
+
 
         saveButton.addActionListener(e -> {
             if (lightButton.isSelected()) {

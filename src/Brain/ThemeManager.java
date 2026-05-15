@@ -1,5 +1,6 @@
 package Brain;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class ThemeManager {
@@ -18,6 +19,23 @@ public class ThemeManager {
             return new Color(30, 35, 34);
         }
         return Color.WHITE;
+    }
+    //applyTheme is fully AI generated.
+    public static void applyTheme() {
+        String[] keys = {"Panel", "OptionPane", "FileChooser", "TextField",
+                "List", "ComboBox", "ScrollPane", "Viewport",
+                "ToolBar", "Tree", "Table", "Button", "Label",
+                "RadioButton", "CheckBox", "TabbedPane", "SplitPane"};
+
+        for (String key : keys) {
+            UIManager.put(key + ".background", getBackgroundColor());
+            UIManager.put(key + ".foreground", getForegroundColor());
+        }
+
+        UIManager.put("TextField.caretForeground", getForegroundColor());
+        UIManager.put("TextArea.background", getBackgroundColor());
+        UIManager.put("TextArea.foreground", getForegroundColor());
+        UIManager.put("OptionPane.messageForeground", getForegroundColor());
     }
 
     public static Color getForegroundColor() {

@@ -30,18 +30,12 @@ public class WelcomeScreen extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         themeChanger();
 
-        startButton.setForeground(ThemeManager.getForegroundColor());
-        startButton.setBackground(ThemeManager.getBackgroundColor());
-        settingsButton.setForeground(ThemeManager.getForegroundColor());
-        settingsButton.setBackground(ThemeManager.getBackgroundColor());
-        loadButton.setForeground(ThemeManager.getForegroundColor());
-        loadButton.setBackground(ThemeManager.getBackgroundColor());
-        startButton.setFocusPainted(false);
-        settingsButton.setFocusable(false);
-        loadButton.setFocusable(false);
+
         startButton.setFont(font);
         settingsButton.setFont(font);
         loadButton.setFont(font);
+
+        ThemeManager.applyTheme();
 
         add(startButton);
         add(settingsButton);

@@ -25,7 +25,6 @@ public class GameScreen extends JFrame{
     private JLabel question;
     private RoundedButton[] answer;
     private JLabel imageLabel;
-    private JDialog jDialog;
 
 
 
@@ -35,7 +34,8 @@ public class GameScreen extends JFrame{
         this.currentIndex = 0;
         this.game = new Game();
         this.answer = new RoundedButton[4];
-        this.jDialog = new JDialog(this);
+
+        ThemeManager.applyTheme();
 
         setExtendedState(Frame.MAXIMIZED_BOTH);
         setLayout(new BorderLayout(10,10));
@@ -48,9 +48,6 @@ public class GameScreen extends JFrame{
 
         question = new JLabel(cards.get(currentIndex).getQuestion().getQ());
         question.setPreferredSize(new Dimension(ss.width/7,ss.height/7));
-        question.setOpaque(true);
-        question.setBackground(ThemeManager.getBackgroundColor());
-        question.setForeground(ThemeManager.getForegroundColor());
         question.setBorder(BorderFactory.createLineBorder(ThemeManager.getForegroundColor(), 2));
         question.setFont(new Font("Q", Font.PLAIN,ss.width / 60));
 
@@ -60,21 +57,15 @@ public class GameScreen extends JFrame{
         JPanel answers = new JPanel();
         answers.setLayout(new GridLayout(2,2));
         answers.setPreferredSize(new Dimension(ss.width/7,ss.height/7));
-        answers.setBackground(ThemeManager.getBackgroundColor());
 
 
 
         Font answerFont = new Font("A", Font.PLAIN, ss.width / 80);
 
-        jDialog.getContentPane().setBackground(ThemeManager.getBackgroundColor());
-        jDialog.getContentPane().setForeground(ThemeManager.getForegroundColor());
-
 
         for (int i = 0; i < 4; i++) {
             answer[i] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[i]);
             answer[i].setFont(answerFont);
-            answer[i].setBackground(ThemeManager.getBackgroundColor());
-            answer[i].setForeground(ThemeManager.getForegroundColor());
             answer[i].setFocusable(false);
             answers.add(answer[i]);
         }
@@ -114,7 +105,7 @@ public class GameScreen extends JFrame{
         setVisible(true);
     }
 
-    private void updateScreen(int c) {
+    public void updateScreen(int c) {
         if (currentIndex < cards.size()) {
             question.setText(cards.get(c).getQuestion().getQ());
             updateButtons(c);
@@ -125,8 +116,7 @@ public class GameScreen extends JFrame{
             ImageIcon img = new ImageIcon(imageName);
             imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/2, ss.height/2, Image.SCALE_SMOOTH)));
         } else {
-//            JOptionPane.showMessageDialog(frame, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns(),"Game Over", JOptionPane.INFORMATION_MESSAGE);
-            jDialog.setEnabled(true);
+            JOptionPane.showMessageDialog(this, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns(),"Game Over", JOptionPane.INFORMATION_MESSAGE);
             dispose();
             WelcomeScreen.getInstance().showApp();
         }
