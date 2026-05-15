@@ -1,33 +1,45 @@
 # 📚 StudyFlashCards
 
-> **⚠️ Work in progress** — feel free to test it and report any bugs!
+A simple Java desktop flashcard quiz app built with Swing.  
+Load a question set, answer multiple-choice questions, and see how well you did!
 
-A simple Java Swing flashcard study app. Load your own question sets, pick a theme, and quiz yourself.
+---
+
+## ✨ Features
+
+- 🃏 **Multiple-choice quiz** — 4 answer options per card
+- 🖼️ **Image per card** — each flashcard displays an image alongside the question
+- 📂 **Custom question sets** — load your own JSON file via the Upload button
+- 🌙 **Light / Dark theme** — toggle in Settings
+- 📊 **End-of-game summary** — shows correct and wrong answer counts
+
+---
+
+## 🖥️ Windows
+
+| Window | Description |
+|---|---|
+| **WelcomeScreen** | Main menu — Play, Settings, Upload questions |
+| **GameScreen** | The quiz itself with cards, images and answer buttons |
+| **SettingsScreen** | Toggle between light and dark theme |
+| **Upload questions** | FileChooser where you can choose your own json |
 
 ---
 
 ## 🚀 Running the App
 
 ### Requirements
-- Java 23 or newer
-- The `.jar` file (or build it yourself — see below)
+- Java 9 or newer
+- Maven (only needed to build from source)
 
 ### Run the JAR
 ```bash
 java -jar StudyFlashCards.jar
 ```
 
-> Make sure `GameData.json` and any image files are in the same directory as the JAR, or inside `res/`.
+> Make sure `GameData.json` and image files are in the `res/` folder next to the JAR.
 
----
-
-## 🔨 Building from Source
-
-### Requirements
-- Java 23+
-- Maven
-
-### Steps
+### Build from Source
 ```bash
 git clone https://github.com/KyblikPlnejCeleru/StudyFlashCards.git
 cd StudyFlashCards
@@ -37,54 +49,81 @@ java -jar target/projectZaverecnyDzava-1.0-SNAPSHOT.jar
 
 ---
 
-## 🃏 Custom Questions
+## 🎮 How to Use
 
-Questions are loaded from a JSON file (`res/GameData.json`). You can also load your own file via the **"Upload questions"** button in the app.
+1. Launch the app — the main menu appears
+2. **Play** — starts the quiz using the built-in `GameData.json`
+3. **Upload questions** — pick your own `.json` file to load a custom deck
+4. **Settings** — switch between light and dark mode, then save
+5. **During the quiz** — click one of the four answer buttons; green = correct, red = wrong
+6. **After the last card** — a dialog shows your correct/wrong count, then returns to the menu
 
-Example format:
+---
+
+## 📝 JSON Format
+
+Custom question sets must follow this format:
+
 ```json
 {
   "card": [
     {
-      "name": "Question 1",
-      "imageName": "myimage.jpg",
+      "name": "Card name",
+      "imagePath": "Absolute/Path/of/the/image",
       "question": {
-        "q": "What is 2 + 2?",
-        "answer": ["1", "2", "3", "4"],
-        "rAnswerIndex": 3
+        "q": "What is the question?",
+        "answer": ["Option A", "Option B", "Option C", "Option D"],
+        "rAnswerIndex": 0
       }
     }
   ]
 }
 ```
 
-- `answer` — array of 4 answer options
-- `rAnswerIndex` — index of the correct answer (0-based)
-- `imageName` — optional image shown with the question
-
----
-
-## 🎨 Features
-
-- Multiple choice flashcard quiz
-- Light / Dark theme
-- Load custom question sets from JSON
-- Image support per card
+| Field | Description |
+|---|---|
+| `name` | Card name |
+| `imagePath` | Path to the image file (relative to working directory) |
+| `q` | Question text |
+| `answer` | Array of exactly 4 answer options |
+| `rAnswerIndex` | Index of the correct answer (0–3) |
 
 ---
 
 ## 🛠️ Tech Stack
 
-- Java (Swing)
-- Maven
-- [Gson](https://github.com/google/gson) for JSON parsing
+| Technology | Purpose |
+|---|---|
+| Java (Swing) | GUI and application logic |
+| Maven | Dependency management and build |
+| [Gson 2.13.2](https://github.com/google/gson) | JSON parsing |
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── Main.java               # Entry point
+├── Brain/
+│   ├── Game.java           # Tracks correct/wrong answer counts
+│   ├── GameData.java       # Loads card data from JSON
+│   └── ThemeManager.java   # Manages light/dark theme state
+├── Properties/
+│   ├── Card.java           # Card model (name, image, question)
+│   ├── Question.java       # Question model (text, answers, correct index)
+│   └── Player.java         # Player model
+└── Windows/
+    ├── WelcomeScreen.java  # Main menu window
+    ├── GameScreen.java     # Quiz window
+    ├── SettingsScreen.java # Settings window
+    └── RoundedButton.java  # Custom rounded button component
+res/
+└── GameData.json           # Built-in question set (3 sample cards)
+```
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-*Found a bug? Open an issue and I'll fix it ASAP 🙂*
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
