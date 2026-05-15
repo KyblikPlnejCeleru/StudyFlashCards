@@ -35,6 +35,9 @@ public class SettingsScreen extends JFrame{
         add(lightButton);
         add(darkButton);
         add(saveButton);
+        lightButton.setFocusable(false);
+        darkButton.setFocusable(false);
+        saveButton.setFocusable(false);
         ThemeManager.applyTheme();
 
 

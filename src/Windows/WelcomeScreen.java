@@ -40,11 +40,12 @@ public class WelcomeScreen extends JFrame{
         add(startButton);
         add(settingsButton);
         add(loadButton);
-
+        startButton.setFocusable(false);
+        settingsButton.setFocusable(false);
+        loadButton.setFocusable(false);
 
         startButton.addActionListener(e -> {
             gameData = GameData.loadGameDataFromResources("/GameData.json");
-            Collections.shuffle(gameData.getCards());
             GameScreen gameScreen = new GameScreen(gameData.card);
             gameScreen.showApp();
             dispose();
@@ -85,7 +86,6 @@ public class WelcomeScreen extends JFrame{
     }
 
     public void showApp() {
-        themeChanger();
         setVisible(true);
 
     }
