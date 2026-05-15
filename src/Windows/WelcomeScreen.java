@@ -5,6 +5,7 @@ import Brain.ThemeManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Collections;
 
 public class WelcomeScreen {
     private JFrame frame;
@@ -42,6 +43,7 @@ public class WelcomeScreen {
 
         startButton.addActionListener(e -> {
             gameData = GameData.loadGameDataFromResources("/GameData.json");
+            Collections.shuffle(gameData.getCards());
             GameScreen gameScreen = new GameScreen(gameData.card);
             gameScreen.showApp();
             frame.dispose();
