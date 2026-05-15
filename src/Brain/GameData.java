@@ -31,9 +31,13 @@ public class GameData {
     public ArrayList<Card> getCard() {
         return card;
     }
-
-
-    public static GameData loadFromPath(String resourcePath) {
+    /**
+     * nacita herni data z jsonu
+     *
+     * @param resourcePath cesta k jsonu
+     * @return herni data z jsonu
+     */
+    public static GameData loadGameDataFromResources(String resourcePath) {
         //Vytvoření objektu pro práci s JSON souborem
         Gson gson = new Gson();
 
@@ -51,6 +55,16 @@ public class GameData {
             throw new RuntimeException("Chyba při načítání JSON: " + e.getMessage());
         }
 
+    }
+
+    public static GameData loadGameDataFromFile(String filePath) {
+        Gson gson = new Gson();
+
+        try (FileReader reader = new FileReader(filePath)) {
+            return gson.fromJson(reader, GameData.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Chyba při načítání JSON: " + e.getMessage());
+        }
     }
 
 }

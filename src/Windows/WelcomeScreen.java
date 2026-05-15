@@ -41,7 +41,7 @@ public class WelcomeScreen {
 
 
         startButton.addActionListener(e -> {
-            gameData = GameData.loadFromPath("/GameData.json");
+            gameData = GameData.loadGameDataFromResources("/GameData.json");
             GameScreen gameScreen = new GameScreen(gameData.card);
             gameScreen.showApp();
             frame.dispose();
@@ -57,7 +57,7 @@ public class WelcomeScreen {
             JFileChooser fc = new JFileChooser();
             fc.showOpenDialog(frame);
             if (fc.getSelectedFile() != null) {
-                gameData = GameData.loadFromPath(fc.getSelectedFile().getAbsolutePath());
+                gameData = GameData.loadGameDataFromFile(fc.getSelectedFile().getAbsolutePath());
                 GameScreen gameScreen = new GameScreen(gameData.card);
                 gameScreen.showApp();
                 frame.dispose();
