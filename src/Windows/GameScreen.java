@@ -89,7 +89,6 @@ public class GameScreen extends JFrame{
         add(imageLabel,BorderLayout.CENTER);
         add(question,BorderLayout.NORTH);
         add(answers,BorderLayout.SOUTH);
-        pack();
 
         getContentPane().setBackground(ThemeManager.getBackgroundColor());
         for (int i = 0; i < answer.length; i++) {
