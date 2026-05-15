@@ -19,7 +19,7 @@ public class GameScreen {
     private int currentIndex;
     private Game game;
     private JLabel question;
-    private JButton[] answer;
+    private RoundedButton[] answer;
     private JLabel imageLabel;
 
 
@@ -28,7 +28,7 @@ public class GameScreen {
         this.cards = cards;
         this.currentIndex = 0;
         this.game = new Game();
-        this.answer = new JButton[4];
+        this.answer = new RoundedButton[4];
 
         frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         frame.setLayout(new BorderLayout(10,10));
