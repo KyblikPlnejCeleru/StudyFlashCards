@@ -4,6 +4,8 @@ import Brain.GameData;
 import Brain.ThemeManager;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
 import java.util.Collections;
@@ -62,6 +64,7 @@ public class WelcomeScreen extends JFrame{
 
         loadButton.addActionListener(e -> {
             JFileChooser fc = new JFileChooser();
+            fc.setFileFilter(new FileNameExtensionFilter("json","json"));
             int file = fc.showOpenDialog(this);
             if (file == JFileChooser.APPROVE_OPTION) {
                 gameData = GameData.loadGameDataFromFile(fc.getSelectedFile().getAbsolutePath(),fc);
