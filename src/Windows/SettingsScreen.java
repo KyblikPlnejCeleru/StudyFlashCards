@@ -11,9 +11,11 @@ public class SettingsScreen extends JFrame{
         setTitle("Setting");
 
         setSize(300, 200);
-        setLayout(new GridLayout(4, 1, 6, 7));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JPanel panel = new JPanel(new GridLayout(5, 1, 6, 7));
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 20, 15, 20));
+        setResizable(false);
 
         JLabel themeLabel = new JLabel("theme");
         JRadioButton lightButton = new JRadioButton("light");
@@ -35,11 +37,12 @@ public class SettingsScreen extends JFrame{
             lightButton.setSelected(true);
         }
 
-        add(roundedButton);
-        add(themeLabel);
-        add(lightButton);
-        add(darkButton);
-        add(saveButton);
+        panel.add(themeLabel);
+        panel.add(lightButton);
+        panel.add(darkButton);
+        panel.add(roundedButton);
+        panel.add(saveButton);
+        setContentPane(panel);
         lightButton.setFocusable(false);
         darkButton.setFocusable(false);
         saveButton.setFocusable(false);
