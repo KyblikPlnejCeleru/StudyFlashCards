@@ -2,6 +2,7 @@ package Brain;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 
 public class ThemeManager {
     private static String currentTheme = "light";
@@ -55,6 +56,36 @@ public class ThemeManager {
             return Color.BLACK;
         } else {
             return Color.WHITE;
+        }
+    }
+
+    public static void saveSettings() {
+        try {
+            File file = new File("settings.romek");
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+            bufferedWriter.write(currentTheme);
+            bufferedWriter.newLine();
+            if (customBackground != null) {
+                bufferedWriter.write(String.valueOf(customBackground.getRGB()));
+            }
+            bufferedWriter.close();
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(null,"settings save issue","error",JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    public static void loadSettings() {
+        try {
+            File file = new File("settings.romek");
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            currentTheme = bufferedReader.readLine();
+            String rgb = bufferedReader.readLine();
+            if (rgb != null){
+                customBackground = new Color(Integer.parseInt(rgb));
+            }
+            bufferedReader.close();
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(null,"settings loading issue","error",JOptionPane.WARNING_MESSAGE);
         }
     }
 }

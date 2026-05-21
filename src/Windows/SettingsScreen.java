@@ -66,6 +66,7 @@ public class SettingsScreen extends JFrame{
             } else if(darkButton.isSelected()){
                 ThemeManager.setTheme("dark");
             }
+            ThemeManager.saveSettings();
             WelcomeScreen.getInstance().showApp();
             dispose();
         });
