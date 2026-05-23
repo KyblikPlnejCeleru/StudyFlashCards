@@ -25,15 +25,17 @@ public class GameScreen extends JFrame{
     private JLabel question;
     private RoundedButton[] answer;
     private JLabel imageLabel;
+    private WelcomeScreen welcomeScreen;
 
 
 
-    public GameScreen(ArrayList<Card> cards) {
+    public GameScreen(ArrayList<Card> cards, WelcomeScreen welcomeScreen) {
         setTitle("StudyFlaSHcARDS");
         this.cards = cards;
         this.currentIndex = 0;
         this.game = new Game();
         this.answer = new RoundedButton[4];
+        this.welcomeScreen = welcomeScreen;
 
         ThemeManager.applyTheme();
 
@@ -99,6 +101,7 @@ public class GameScreen extends JFrame{
             });
         }
 
+        System.out.println(cards.get(0).getQuestion().getQ());
     }
 
     public void showApp() {
@@ -118,7 +121,7 @@ public class GameScreen extends JFrame{
         } else {
             JOptionPane.showMessageDialog(this, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns(),"Game Over", JOptionPane.INFORMATION_MESSAGE);
             dispose();
-            WelcomeScreen.getInstance().showApp();
+            welcomeScreen.setVisible(true);
         }
     }
     public void updateButtons(int c){

@@ -67,8 +67,8 @@ public class SettingsScreen extends JFrame{
                 ThemeManager.setTheme("dark");
             }
             ThemeManager.saveSettings();
-            WelcomeScreen.getInstance().showApp();
             dispose();
+            new WelcomeScreen().showApp();
         });
     }
 

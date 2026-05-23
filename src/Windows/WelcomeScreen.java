@@ -12,7 +12,6 @@ import java.util.Collections;
 
 public class WelcomeScreen extends JFrame{
     private GameData gameData;
-    private static WelcomeScreen instance;
     private RoundedButton startButton, settingsButton, loadButton;
 
     public WelcomeScreen() {
@@ -46,15 +45,16 @@ public class WelcomeScreen extends JFrame{
 
         startButton.addActionListener(e -> {
             gameData = GameData.loadGameDataFromResources("/GameData.json");
-            GameScreen gameScreen = new GameScreen(gameData.card);
+            Collections.shuffle(gameData.card);
+            GameScreen gameScreen = new GameScreen(gameData.card,this);
             gameScreen.showApp();
-            dispose();
+            setVisible(false);
         });
 
         settingsButton.addActionListener(e -> {
             SettingsScreen settingsScreen = new SettingsScreen();
             settingsScreen.showApp();
-            dispose();
+            setVisible(false);
         });
 
         loadButton.addActionListener(e -> {
@@ -64,9 +64,10 @@ public class WelcomeScreen extends JFrame{
             if (file == JFileChooser.APPROVE_OPTION) {
                 gameData = GameData.loadGameDataFromFile(fc.getSelectedFile().getAbsolutePath(),fc);
                 if (!(gameData==null)){
-                    GameScreen gameScreen = new GameScreen(gameData.getCards());
+                    Collections.shuffle(gameData.card);
+                    GameScreen gameScreen = new GameScreen(gameData.getCards(),this);
                     gameScreen.showApp();
-                    dispose();
+                    setVisible(false);
                 }
             } else if (file == JFileChooser.CANCEL_OPTION) {
                 JOptionPane.showMessageDialog(fc,"Cmon select something im hunrgy");
@@ -89,12 +90,6 @@ public class WelcomeScreen extends JFrame{
         ThemeManager.applyTheme();
         themeChanger();
         setVisible(true);
+    }
 
-    }
-    public static WelcomeScreen getInstance() {
-        if (instance == null) {
-            instance = new WelcomeScreen();
-        }
-        return instance;
-    }
 }
