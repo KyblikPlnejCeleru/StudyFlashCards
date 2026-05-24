@@ -32,6 +32,11 @@ public class Game {
     }
 
 
+    public double succesPercentage(double cardCount){
+        return  Math.round(correctAnsw/cardCount*100);
+    }
+
+
 
 
 }

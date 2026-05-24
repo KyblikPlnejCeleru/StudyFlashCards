@@ -101,7 +101,6 @@ public class GameScreen extends JFrame{
             });
         }
 
-        System.out.println(cards.get(0).getQuestion().getQ());
     }
 
     public void showApp() {
@@ -119,7 +118,7 @@ public class GameScreen extends JFrame{
             ImageIcon img = new ImageIcon(imageName);
             imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/2, ss.height/2, Image.SCALE_SMOOTH)));
         } else {
-            JOptionPane.showMessageDialog(this, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.getWrongAns(),"Game Over", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.succesPercentage(cards.size())+"%","Game Over", JOptionPane.INFORMATION_MESSAGE);
             dispose();
             welcomeScreen.setVisible(true);
         }
