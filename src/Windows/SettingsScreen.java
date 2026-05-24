@@ -5,8 +5,17 @@ import Brain.ThemeManager;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The SettingsScreen class provides a graphical interface for users to configure application settings,
+ * primarily theme selection. It extends JFrame.
+ */
 public class SettingsScreen extends JFrame{
 
+    /**
+     * Constructs a new SettingsScreen.
+     * Initializes the UI components for theme selection (light, dark, custom),
+     * sets up layout, applies theme, and adds action listeners.
+     */
     public SettingsScreen() {
         setTitle("Setting");
 
@@ -24,36 +33,37 @@ public class SettingsScreen extends JFrame{
         JRadioButton custom = new JRadioButton("custom");
 
         ButtonGroup group = new ButtonGroup();
-        RoundedButton roundedButton = new RoundedButton("custom");
+        RoundedButton customThemeButton = new RoundedButton("custom");
         group.add(lightButton);
         group.add(darkButton);
-        group.add(roundedButton);
-        group.add(custom);
+        group.add(customThemeButton);
 
         String currentTheme = ThemeManager.getCurrentTheme();
         if (currentTheme.equals("dark")) {
             darkButton.setSelected(true);
         } else if (currentTheme.equals("light")){
             lightButton.setSelected(true);
+        } else {
+            customThemeButton.setSelected(true);
         }
 
         panel.add(themeLabel);
         panel.add(lightButton);
         panel.add(darkButton);
-        panel.add(roundedButton);
+        panel.add(customThemeButton);
         panel.add(saveButton);
         setContentPane(panel);
         lightButton.setFocusable(false);
         darkButton.setFocusable(false);
         saveButton.setFocusable(false);
-        roundedButton.setFocusable(false);
+        customThemeButton.setFocusable(false);
         ThemeManager.applyTheme();
 
-        roundedButton.addActionListener(e -> {
+        customThemeButton.addActionListener(e -> {
             custom.setSelected(true);
             Color color = JColorChooser.showDialog(this, "Background", ThemeManager.getBackgroundColor());
             if (color != null) {
-                ThemeManager.setTheme("");
+                ThemeManager.setTheme("custom");
                 ThemeManager.setCustomBackground(color);
                 ThemeManager.applyTheme();
             }
@@ -65,6 +75,8 @@ public class SettingsScreen extends JFrame{
                 ThemeManager.setTheme("light");
             } else if(darkButton.isSelected()){
                 ThemeManager.setTheme("dark");
+            } else if (customThemeButton.isSelected()){
+                ThemeManager.setTheme("custom");
             }
             ThemeManager.saveSettings();
             dispose();
@@ -72,6 +84,9 @@ public class SettingsScreen extends JFrame{
         });
     }
 
+    /**
+     * Makes the SettingsScreen visible to the user.
+     */
     public void showApp() {
         setVisible(true);
     }

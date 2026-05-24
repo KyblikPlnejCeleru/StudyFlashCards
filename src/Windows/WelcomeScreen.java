@@ -10,10 +10,25 @@ import java.awt.*;
 import java.io.File;
 import java.util.Collections;
 
+/**
+ * The WelcomeScreen class represents the initial screen of the application,
+ * allowing users to start a new game, access settings, or load questions from a file.
+ * It extends JFrame to provide a graphical user interface.
+ */
 public class WelcomeScreen extends JFrame{
+    /**
+     * An instance of GameData to load and manage flashcard data.
+     */
     private GameData gameData;
+    /**
+     * Buttons for starting the game, accessing settings, and uploading questions.
+     */
     private RoundedButton startButton, settingsButton, loadButton;
 
+    /**
+     * Constructs a new WelcomeScreen.
+     * Initializes the UI components, sets up layout, applies theme, and adds action listeners to buttons.
+     */
     public WelcomeScreen() {
         setTitle("Welcome");
         this.gameData = new GameData();
@@ -75,6 +90,10 @@ public class WelcomeScreen extends JFrame{
         });
     }
 
+    /**
+     * Applies the current theme settings to the components of the WelcomeScreen.
+     * This includes setting background and foreground colors for the content pane and buttons.
+     */
     public void themeChanger(){
         getContentPane().setBackground(ThemeManager.getBackgroundColor());
         getContentPane().setForeground(ThemeManager.getForegroundColor());
@@ -86,6 +105,10 @@ public class WelcomeScreen extends JFrame{
         loadButton.setBackground(ThemeManager.getBackgroundColor());
     }
 
+    /**
+     * Makes the WelcomeScreen visible to the user.
+     * It also applies the theme and updates the component colors before becoming visible.
+     */
     public void showApp() {
         ThemeManager.applyTheme();
         themeChanger();

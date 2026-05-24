@@ -4,10 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 
+/**
+ * The ThemeManager class handles the application's theming, including light, dark, and custom themes.
+ * It provides methods to set, apply, save, and load theme settings.
+ */
 public class ThemeManager {
+
     private static String currentTheme = "light";
     private static Color customBackground;
-
     public static void setCustomBackground(Color customBackground) {
         ThemeManager.customBackground = customBackground;
     }
@@ -16,7 +20,6 @@ public class ThemeManager {
     public static String getCurrentTheme() {
         return currentTheme;
     }
-
     public static void setTheme(String theme) {
         currentTheme = theme;
     }
@@ -29,7 +32,12 @@ public class ThemeManager {
         }
         return customBackground;
     }
-    //applyTheme is fully AI generated.
+    /**
+     * Applies the currently selected theme to various Swing UI components.
+     * This method iterates through common Swing component keys and sets their background and foreground colors
+     * based on the current theme settings.
+     * @Author claude.ai
+     */
     public static void applyTheme() {
         String[] keys = {"Panel", "OptionPane", "FileChooser", "TextField",
                 "List", "ComboBox", "ScrollPane", "Viewport",
@@ -45,6 +53,11 @@ public class ThemeManager {
         UIManager.put("OptionPane.messageForeground", getForegroundColor());
     }
 
+    /**
+     * Returns the foreground color for the current theme.
+     * For custom themes, it determines a suitable foreground color (black or white) based on the custom background's brightness.
+     * @return The Color object representing the foreground color.
+     */
     public static Color getForegroundColor() {
         if (currentTheme.equals("dark")) {
             return Color.WHITE;
@@ -59,6 +72,10 @@ public class ThemeManager {
         }
     }
 
+    /**
+     * Saves the current theme settings (current theme name and custom background RGB if applicable)
+     * to a file named "settings.romek".
+     */
     public static void saveSettings() {
         try {
             File file = new File("settings.romek");
@@ -74,6 +91,10 @@ public class ThemeManager {
         }
     }
 
+    /**
+     * Loads the theme settings from the "settings.romek" file.
+     * If the file exists, it reads the current theme and custom background RGB (if present).
+     */
     public static void loadSettings() {
         try {
             File file = new File("settings.romek");
@@ -89,6 +110,3 @@ public class ThemeManager {
         }
     }
 }
-
-
-

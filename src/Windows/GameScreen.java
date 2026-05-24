@@ -12,10 +12,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+/**
+ * The GameScreen class represents the main game window where flashcards are displayed
+ * and users can answer questions. It extends JFrame to provide a graphical user interface.
+ */
 public class GameScreen extends JFrame{
 
 
+    /**
+     * Stores the screen size of the default toolkit.
+     */
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
+
 
 
 
@@ -29,6 +37,12 @@ public class GameScreen extends JFrame{
 
 
 
+    /**
+     * Constructs a new GameScreen.
+     *
+     * @param cards The ArrayList of Card objects to be used in the game.
+     * @param welcomeScreen The WelcomeScreen instance to return to after the game.
+     */
     public GameScreen(ArrayList<Card> cards, WelcomeScreen welcomeScreen) {
         setTitle("StudyFlaSHcARDS");
         this.cards = cards;
@@ -103,10 +117,19 @@ public class GameScreen extends JFrame{
 
     }
 
+    /**
+     * Makes the GameScreen visible to the user.
+     */
     public void showApp() {
         setVisible(true);
     }
 
+    /**
+     * Updates the screen with the next card's question, answers, and image.
+     * If all cards have been played, it displays a game over message and returns to the welcome screen.
+     *
+     * @param c The index of the card to display.
+     */
     public void updateScreen(int c) {
         if (currentIndex < cards.size()) {
             question.setText(cards.get(c).getQuestion().getQ());
@@ -118,30 +141,47 @@ public class GameScreen extends JFrame{
             ImageIcon img = new ImageIcon(imageName);
             imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/2, ss.height/2, Image.SCALE_SMOOTH)));
         } else {
-            JOptionPane.showMessageDialog(this, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " + game.succesPercentage(cards.size())+"%","Game Over", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " +game.getWrongAns()+" "+ game.succesPercentage()+"%","Game Over", JOptionPane.INFORMATION_MESSAGE);
             dispose();
             welcomeScreen.setVisible(true);
         }
     }
+
+    /**
+     * Updates the text of the answer buttons with the answers from the card at the given index.
+     *
+     * @param c The index of the card whose answers are to be displayed.
+     */
     public void updateButtons(int c){
         for (int i = 0; i <4 ; i++) {
             answer[i].setText(cards.get(c).getQuestion().getAnswer()[i]);
         }
     }
 
+    /**
+     * Disables all answer buttons, preventing further interaction.
+     */
     public void disableButtons(){
         for (int i = 0; i <4 ; i++) {
             answer[i].setEnabled(false);
         }
     }
 
+    /**
+     * Enables all answer buttons, allowing user interaction.
+     */
     public void enableButtons(){
         for (int i = 0; i <4 ; i++) {
             answer[i].setEnabled(true);
         }
     }
 
-    // waitTimer method was made with help of AI - claude.ai
+    /**
+     * Implements a short delay using a Swing Timer before updating the screen
+     * and re-enabling buttons after an answer is selected.
+     * @Author claude.ai
+     * @param index The index of the button that was clicked.
+     */
     public void waitTimer(int index){
         javax.swing.Timer timer = new javax.swing.Timer(500, event -> {
             answer[index].setBackground(ThemeManager.getBackgroundColor());
