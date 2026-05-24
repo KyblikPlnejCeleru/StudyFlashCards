@@ -1,6 +1,6 @@
 # 📚 StudyFlashCards
 
-A simple Java desktop flashcard quiz app built with Swing.  
+A simple Java desktop flashcard quiz app built with Swing.
 Load a question set, answer multiple-choice questions, and see how well you did!
 
 ---
@@ -10,7 +10,7 @@ Load a question set, answer multiple-choice questions, and see how well you did!
 - 🃏 **Multiple-choice quiz** — 4 answer options per card
 - 🖼️ **Image per card** — each flashcard displays an image alongside the question
 - 📂 **Custom question sets** — load your own JSON file via the Upload button
-- 🌙 **Light / Dark theme** — toggle in Settings
+- 🌙 **Light / Dark / Custom theme** — toggle in Settings, or pick your own background color
 - 📊 **End-of-game summary** — shows correct and wrong answer counts
 
 ---
@@ -21,55 +21,66 @@ Load a question set, answer multiple-choice questions, and see how well you did!
 |---|---|
 | **WelcomeScreen** | Main menu — Play, Settings, Upload questions |
 | **GameScreen** | The quiz itself with cards, images and answer buttons |
-| **SettingsScreen** | Toggle between light and dark theme |
+| **SettingsScreen** | Toggle between light, dark, or custom theme |
 | **Upload questions** | FileChooser where you can choose your own json |
 
 ---
 
-## 🚀 Running the App
+## 🚀 Getting Started
 
 ### Requirements
 - Java 9 or newer
-- Maven (only needed to build from source)
 
-### Run the JAR
-```bash
-java -jar StudyFlashCards.jar
-```
+### Running a Release (JAR file)
 
-> Make sure `GameData.json` and image files are in the `res/` folder next to the JAR.
+1.  **Download the latest JAR** from the [Releases](https://github.com/KyblikPlnejCeleru/StudyFlashCards/releases) page.
+2.  **Place the JAR** in a directory.
+3.  **Ensure resources are present**: Create a `res/` folder in the **same directory** as the JAR. Place your `GameData.json` (or any custom JSON you want to use) and any image files referenced in your JSON within this `res/` folder.
+4.  **Run the application** from your terminal:
+    ```bash
+    java -jar StudyFlashCards.jar
+    ```
 
-### Build from Source
-```bash
-git clone https://github.com/KyblikPlnejCeleru/StudyFlashCards.git
-cd StudyFlashCards
-mvn package
-java -jar target/projectZaverecnyDzava-1.0-SNAPSHOT.jar
-```
+### Building from Source
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/KyblikPlnejCeleru/StudyFlashCards.git
+    cd StudyFlashCards
+    ```
+2.  **Build the project** using Maven:
+    ```bash
+    mvn clean install
+    ```
+3.  **Run the application**:
+    ```bash
+    java -jar target/projectZaverecnyDzava-1.0-SNAPSHOT.jar
+    ```
+    (Note: The exact JAR name in `target/` might vary slightly based on your `pom.xml` configuration.)
 
 ---
 
 ## 🎮 How to Use
 
-1. Launch the app — the main menu appears
-2. **Play** — starts the quiz using the built-in `GameData.json`
-3. **Upload questions** — pick your own `.json` file to load a custom deck
-4. **Settings** — switch between light and dark mode, then save
-5. **During the quiz** — click one of the four answer buttons; green = correct, red = wrong
-6. **After the last card** — a dialog shows your correct/wrong count, then returns to the menu
+1.  Launch the app — the main menu appears.
+2.  **Play** — starts the quiz using the built-in `GameData.json` (from the `res/` folder).
+3.  **Upload questions** — opens a file dialog to pick your own `.json` file to load a custom deck.
+4.  **Settings** — switch between light, dark, or a custom background color, then save your preference.
+5.  **During the quiz** — click one of the four answer buttons; green indicates a correct answer, red indicates a wrong answer.
+6.  **After the last card** — a dialog shows your correct/wrong count and success percentage, then returns to the main menu.
 
 ---
 
-## 📝 JSON Format
+## 📝 JSON Format for Custom Questions
 
-Custom question sets must follow this format:
+Custom question sets must follow this exact structure:
 
 ```json
 {
   "card": [
     {
       "name": "Card name",
-      "imagePath": "Absolute/Path/of/the/image",
+      "imagePath": "res/images/your_image.png",
       "question": {
         "q": "What is the question?",
         "answer": ["Option A", "Option B", "Option C", "Option D"],
@@ -80,13 +91,13 @@ Custom question sets must follow this format:
 }
 ```
 
-| Field | Description |
-|---|---|
-| `name` | Card name |
-| `imagePath` | Path to the image file (relative to working directory) |
-| `q` | Question text |
-| `answer` | Array of exactly 4 answer options |
-| `rAnswerIndex` | Index of the correct answer (0–3) |
+| Field | Description | Example |
+|---|---|---|
+| `name` | A descriptive name for the card. | `"Capital of France"` |
+| `imagePath` | **Relative path** to the image file from the application's working directory (e.g., `res/images/paris.png`). Ensure images are in the `res/` folder. | `"res/images/eiffel_tower.jpg"` |
+| `q` | The actual question text. | `"Which city is known as the 'City of Love'?"` |
+| `answer` | An array of exactly 4 string options for the multiple-choice question. | `["London", "Paris", "Rome", "Berlin"]` |
+| `rAnswerIndex` | The 0-based index of the correct answer within the `answer` array. | `1` (for "Paris" in the example above) |
 
 ---
 
@@ -94,32 +105,36 @@ Custom question sets must follow this format:
 
 | Technology | Purpose |
 |---|---|
-| Java (Swing) | GUI and application logic |
-| Maven | Dependency management and build |
-| [Gson 2.13.2](https://github.com/google/gson) | JSON parsing |
+| Java (Swing) | GUI and core application logic |
+| Maven | Dependency management and build automation |
+| [Gson 2.13.2](https://github.com/google/gson) | Efficient JSON serialization/deserialization |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-src/
-├── Main.java               # Entry point
-├── Brain/
-│   ├── Game.java           # Tracks correct/wrong answer counts
-│   ├── GameData.java       # Loads card data from JSON
-│   └── ThemeManager.java   # Manages light/dark theme state
-├── Properties/
-│   ├── Card.java           # Card model (name, image, question)
-│   ├── Question.java       # Question model (text, answers, correct index)
-│   └── Player.java         # Player model
-└── Windows/
-    ├── WelcomeScreen.java  # Main menu window
-    ├── GameScreen.java     # Quiz window
-    ├── SettingsScreen.java # Settings window
-    └── RoundedButton.java  # Custom rounded button component
-res/
-└── GameData.json           # Built-in question set (3 sample cards)
+.
+├── src/
+│   ├── Main.java               # Application entry point
+│   ├── Brain/
+│   │   ├── Game.java           # Manages game statistics (correct/wrong answers)
+│   │   ├── GameData.java       # Handles loading flashcard data from JSON files
+│   │   └── ThemeManager.java   # Manages application themes (light, dark, custom)
+│   ├── Properties/
+│   │   ├── Card.java           # Data model for a single flashcard
+│   │   └── Question.java       # Data model for a question with answers
+│   └── Windows/
+│       ├── WelcomeScreen.java  # Initial screen with main menu options
+│       ├── GameScreen.java     # Main quiz interface for displaying cards
+│       ├── SettingsScreen.java # Screen for theme configuration
+│       └── RoundedButton.java  # Custom Swing button with rounded corners
+├── res/
+│   ├── GameData.json           # Default built-in question set
+│   └── images/                 # Directory for card images (example)
+├── pom.xml                     # Maven project configuration
+├── README.md                   # Project documentation
+└── LICENSE                     # License file
 ```
 
 ---

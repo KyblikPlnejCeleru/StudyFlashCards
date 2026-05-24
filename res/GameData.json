@@ -1,30 +1,93 @@
 {
   "card": [
     {
-      "name": "Otázka 1",
-      "imagePath": "res/test.jpg",
+      "name": "Question 1",
+      "imagePath": "res/q1.jpg",
       "question": {
-        "q": "Kolik je 2 + 2?",
-        "answer": ["1", "2", "3", "4"],
+        "q": "What is the capital of Australia?",
+        "answer": ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+        "rAnswerIndex": 2
+      }
+    },
+    {
+      "name": "Question 2",
+      "imagePath": "res/q2.jpg",
+      "question": {
+        "q": "How many bones are in the adult human body?",
+        "answer": ["204", "206", "208", "212"],
+        "rAnswerIndex": 1
+      }
+    },
+    {
+      "name": "Question 3",
+      "imagePath": "res/q3.jpg",
+      "question": {
+        "q": "Which planet is the largest in our solar system?",
+        "answer": ["Saturn", "Neptune", "Jupiter", "Uranus"],
+        "rAnswerIndex": 2
+      }
+    },
+    {
+      "name": "Question 4",
+      "imagePath": "res/q4.jpg",
+      "question": {
+        "q": "In what year did World War II end?",
+        "answer": ["1943", "1944", "1945", "1946"],
+        "rAnswerIndex": 2
+      }
+    },
+    {
+      "name": "Question 5",
+      "imagePath": "res/q5.jpg",
+      "question": {
+        "q": "What is the chemical symbol for gold?",
+        "answer": ["Go", "Gd", "Ag", "Au"],
         "rAnswerIndex": 3
       }
     },
     {
-      "name": "Otázka 2",
-      "imagePath": "res/test2.jpg",
+      "name": "Question 6",
+      "imagePath": "res/q6.jpg",
       "question": {
-        "q": "Hlavní město ČR je?",
-        "answer": ["Brno", "Praha", "Ostrava", "Plzeň"],
-        "rAnswerIndex": 1
+        "q": "Who painted the Mona Lisa?",
+        "answer": ["Michelangelo", "Raphael", "Leonardo da Vinci", "Caravaggio"],
+        "rAnswerIndex": 2
       }
     },
     {
-      "name": "Otázka 3",
-      "imagePath": "res/test3.jpg",
+      "name": "Question 7",
+      "imagePath": "res/q7.jpg",
       "question": {
-        "q": "Jaký jazyk používáš?",
-        "answer": ["Python", "Java", "C++", "Rust"],
-        "rAnswerIndex": 1
+        "q": "What is the longest river in the world?",
+        "answer": ["Amazon", "Yangtze", "Mississippi", "Nile"],
+        "rAnswerIndex": 3
+      }
+    },
+    {
+      "name": "Question 8",
+      "imagePath": "res/q8.jpg",
+      "question": {
+        "q": "How many players are on a standard football team?",
+        "answer": ["9", "10", "11", "12"],
+        "rAnswerIndex": 2
+      }
+    },
+    {
+      "name": "Question 9",
+      "imagePath": "res/q9.jpg",
+      "question": {
+        "q": "What gas do plants absorb from the atmosphere during photosynthesis?",
+        "answer": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+        "rAnswerIndex": 2
+      }
+    },
+    {
+      "name": "Question 10",
+      "imagePath": "res/q10.jpg",
+      "question": {
+        "q": "Which country has the most natural lakes in the world?",
+        "answer": ["Russia", "USA", "Canada", "Finland"],
+        "rAnswerIndex": 2
       }
     }
   ]
