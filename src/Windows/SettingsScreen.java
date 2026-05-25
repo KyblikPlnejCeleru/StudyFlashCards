@@ -37,6 +37,7 @@ public class SettingsScreen extends JFrame{
         group.add(lightButton);
         group.add(darkButton);
         group.add(customThemeButton);
+        group.add(custom);
 
         String currentTheme = ThemeManager.getCurrentTheme();
         if (currentTheme.equals("dark")) {
@@ -60,9 +61,9 @@ public class SettingsScreen extends JFrame{
         ThemeManager.applyTheme();
 
         customThemeButton.addActionListener(e -> {
-            custom.setSelected(true);
             Color color = JColorChooser.showDialog(this, "Background", ThemeManager.getBackgroundColor());
             if (color != null) {
+                custom.setSelected(true);
                 ThemeManager.setTheme("custom");
                 ThemeManager.setCustomBackground(color);
                 ThemeManager.applyTheme();

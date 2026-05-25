@@ -98,6 +98,9 @@ public class ThemeManager {
     public static void loadSettings() {
         try {
             File file = new File("settings.romek");
+            if (!file.exists()){
+                return;
+            }
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             currentTheme = bufferedReader.readLine();
             String rgb = bufferedReader.readLine();
