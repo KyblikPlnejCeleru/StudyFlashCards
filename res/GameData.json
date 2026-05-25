@@ -2,7 +2,7 @@
   "card": [
     {
       "name": "Question 1",
-      "imagePath": "res/q1.jpg",
+      "imagePath": "q1.jpg",
       "question": {
         "q": "What is the capital of Australia?",
         "answer": ["Sydney", "Melbourne", "Canberra", "Brisbane"],
@@ -11,7 +11,7 @@
     },
     {
       "name": "Question 2",
-      "imagePath": "res/q2.jpg",
+      "imagePath": "q2.jpg",
       "question": {
         "q": "How many bones are in the adult human body?",
         "answer": ["204", "206", "208", "212"],
@@ -20,7 +20,7 @@
     },
     {
       "name": "Question 3",
-      "imagePath": "res/q3.jpg",
+      "imagePath": "q3.jpg",
       "question": {
         "q": "Which planet is the largest in our solar system?",
         "answer": ["Saturn", "Neptune", "Jupiter", "Uranus"],
@@ -29,7 +29,7 @@
     },
     {
       "name": "Question 4",
-      "imagePath": "res/q4.jpg",
+      "imagePath": "q4.jpg",
       "question": {
         "q": "In what year did World War II end?",
         "answer": ["1943", "1944", "1945", "1946"],
@@ -38,7 +38,7 @@
     },
     {
       "name": "Question 5",
-      "imagePath": "res/q5.jpg",
+      "imagePath": "q5.jpg",
       "question": {
         "q": "What is the chemical symbol for gold?",
         "answer": ["Go", "Gd", "Ag", "Au"],
@@ -47,7 +47,7 @@
     },
     {
       "name": "Question 6",
-      "imagePath": "res/q6.jpg",
+      "imagePath": "q6.jpg",
       "question": {
         "q": "Who painted the Mona Lisa?",
         "answer": ["Michelangelo", "Raphael", "Leonardo da Vinci", "Caravaggio"],
@@ -56,7 +56,7 @@
     },
     {
       "name": "Question 7",
-      "imagePath": "res/q7.jpg",
+      "imagePath": "q7.jpg",
       "question": {
         "q": "What is the longest river in the world?",
         "answer": ["Amazon", "Yangtze", "Mississippi", "Nile"],
@@ -65,7 +65,7 @@
     },
     {
       "name": "Question 8",
-      "imagePath": "res/q8.jpg",
+      "imagePath": "q8.jpg",
       "question": {
         "q": "How many players are on a standard football team?",
         "answer": ["9", "10", "11", "12"],
@@ -74,7 +74,7 @@
     },
     {
       "name": "Question 9",
-      "imagePath": "res/q9.jpg",
+      "imagePath": "q9.jpg",
       "question": {
         "q": "What gas do plants absorb from the atmosphere during photosynthesis?",
         "answer": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
@@ -83,7 +83,7 @@
     },
     {
       "name": "Question 10",
-      "imagePath": "res/q10.jpg",
+      "imagePath": "q10.jpg",
       "question": {
         "q": "Which country has the most natural lakes in the world?",
         "answer": ["Russia", "USA", "Canada", "Finland"],
