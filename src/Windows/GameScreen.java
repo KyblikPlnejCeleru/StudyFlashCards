@@ -88,9 +88,8 @@ public class GameScreen extends JFrame{
 
 
         String imageName = cards.get(currentIndex).getImageName();
-        ImageIcon img = new ImageIcon(imageName);
         imageLabel = new JLabel();
-        imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/2, ss.height/2, Image.SCALE_SMOOTH)));
+        imageLabel.setIcon(loadImage(imageName));
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         imageLabel.setVerticalAlignment(JLabel.CENTER);
         add(imageLabel,BorderLayout.CENTER);
@@ -138,8 +137,7 @@ public class GameScreen extends JFrame{
                 answer[i].setBackground(ThemeManager.getBackgroundColor());
             }
             String imageName = cards.get(c).getImageName();
-            ImageIcon img = new ImageIcon(imageName);
-            imageLabel.setIcon(new ImageIcon(img.getImage().getScaledInstance(ss.width/2, ss.height/2, Image.SCALE_SMOOTH)));
+            imageLabel.setIcon(loadImage(imageName));
         } else {
             JOptionPane.showMessageDialog(this, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " +game.getWrongAns()+" "+ game.succesPercentage()+"%","Game Over", JOptionPane.INFORMATION_MESSAGE);
             dispose();
@@ -190,5 +188,27 @@ public class GameScreen extends JFrame{
         });
         timer.setRepeats(false);
         timer.start();
+    }
+
+    private ImageIcon loadImage(String imageName) {
+        try {
+            java.io.InputStream stream = getClass().getResourceAsStream("/" + imageName);
+            if (stream != null) {
+                Image img = javax.imageio.ImageIO.read(stream);
+                return new ImageIcon(img.getScaledInstance(ss.width / 2, ss.height / 2, Image.SCALE_SMOOTH));
+            }
+            java.io.File jarDir = new java.io.File(
+                    getClass().getProtectionDomain().getCodeSource().getLocation().toURI()
+            ).getParentFile();
+            java.io.File imgFile = new java.io.File(jarDir, imageName);
+            if (imgFile.exists()) {
+                Image img = javax.imageio.ImageIO.read(imgFile);
+                return new ImageIcon(img.getScaledInstance(ss.width / 2, ss.height / 2, Image.SCALE_SMOOTH));
+            }
+            Image img = javax.imageio.ImageIO.read(new java.io.File(imageName));
+            return new ImageIcon(img.getScaledInstance(ss.width / 2, ss.height / 2, Image.SCALE_SMOOTH));
+        } catch (Exception e) {
+            return new ImageIcon();
+        }
     }
 }
