@@ -190,6 +190,14 @@ public class GameScreen extends JFrame{
         timer.start();
     }
 
+    /**
+     * Loads an image from various sources (classpath, JAR directory, or file system)
+     * and scales it to a predefined size.
+     * this method is just made for the jar file.
+     * @Author claude.ai
+     * @param imageName The name or path of the image file.
+     * @return An ImageIcon containing the loaded and scaled image, or an empty ImageIcon if loading fails.
+     */
     private ImageIcon loadImage(String imageName) {
         try {
             java.io.InputStream stream = getClass().getResourceAsStream("/" + imageName);
