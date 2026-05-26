@@ -6,8 +6,15 @@ import Brain.ThemeManager;
 import Properties.Card;
 import org.w3c.dom.ls.LSOutput;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -200,23 +207,12 @@ public class GameScreen extends JFrame{
      */
     private ImageIcon loadImage(String imageName) {
         try {
-            java.io.InputStream stream = getClass().getResourceAsStream("/" + imageName);
-            if (stream != null) {
-                Image img = javax.imageio.ImageIO.read(stream);
-                return new ImageIcon(img.getScaledInstance(ss.width / 2, ss.height / 2, Image.SCALE_SMOOTH));
-            }
-            java.io.File jarDir = new java.io.File(
-                    getClass().getProtectionDomain().getCodeSource().getLocation().toURI()
-            ).getParentFile();
-            java.io.File imgFile = new java.io.File(jarDir, imageName);
-            if (imgFile.exists()) {
-                Image img = javax.imageio.ImageIO.read(imgFile);
-                return new ImageIcon(img.getScaledInstance(ss.width / 2, ss.height / 2, Image.SCALE_SMOOTH));
-            }
-            Image img = javax.imageio.ImageIO.read(new java.io.File(imageName));
+            InputStream stream = getClass().getResourceAsStream("/" + imageName);
+            if (stream == null) stream = Files.newInputStream(Paths.get(imageName));
+            Image img = ImageIO.read(stream);
             return new ImageIcon(img.getScaledInstance(ss.width / 2, ss.height / 2, Image.SCALE_SMOOTH));
         } catch (Exception e) {
             return new ImageIcon();
         }
     }
-}
+    }
