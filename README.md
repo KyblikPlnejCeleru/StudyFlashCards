@@ -1,89 +1,80 @@
 # 📚 StudyFlashCards
 
-A simple Java desktop flashcard quiz app built with Swing.
-Load a question set, answer multiple-choice questions, and see how well you did!
+Jednoduchá desktopová aplikace pro učení pomocí kartiček. Načti sadu otázek, odpovídej na multiple-choice otázky a sleduj svůj výsledek!
 
 ---
 
-## ✨ Features
+## ✨ Funkce
 
-- 🃏 **Multiple-choice quiz** — 4 answer options per card
-- 🖼️ **Image per card** — each flashcard displays an image alongside the question
-- 📂 **Custom question sets** — load your own JSON file via the Upload button
-- 🌙 **Light / Dark / Custom theme** — toggle in Settings, or pick your own background color
-- 📊 **End-of-game summary** — shows correct and wrong answer counts
-
----
-
-## 🖥️ Windows
-
-| Window | Description |
-|---|---|
-| **WelcomeScreen** | Main menu — Play, Settings, Upload questions |
-| **GameScreen** | The quiz itself with cards, images and answer buttons |
-| **SettingsScreen** | Toggle between light, dark, or custom theme |
-| **Upload questions** | FileChooser where you can choose your own json |
+- 🃏 **Multiple-choice kvíz** — 4 možnosti odpovědi na každé kartičce
+- 🖼️ **Obrázek ke každé kartičce** — každá otázka může mít přiložený obrázek
+- 📂 **Vlastní sady otázek** — nahraj si vlastní JSON soubor přes tlačítko Upload
+- 🌙 **Světlý / Tmavý režim** — přepni v Nastavení
+- 📊 **Výsledky po kvízu** — zobrazí počet správných a špatných odpovědí
 
 ---
 
-## 🚀 Getting Started
+## 🖥️ Okna aplikace
 
-### Requirements
-- Java 9 or newer
-
-### Running a Release (JAR file)
-
-1.  **Download the latest JAR** from the [Releases](https://github.com/KyblikPlnejCeleru/StudyFlashCards/releases) page.
-2.  **Place the JAR** in a directory.
-3.  **Ensure resources are present**: Create a `res/` folder in the **same directory** as the JAR. Place your `GameData.json` (or any custom JSON you want to use) and any image files referenced in your JSON within this `res/` folder.
-4.  **Run the application** from your terminal:
-    ```bash
-    java -jar StudyFlashCards.jar
-    ```
-
-### Building from Source
-
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/KyblikPlnejCeleru/StudyFlashCards.git
-    cd StudyFlashCards
-    ```
-2.  **Build the project** using Maven:
-    ```bash
-    mvn clean install
-    ```
-3.  **Run the application**:
-    ```bash
-    java -jar target/projectZaverecnyDzava-1.0-SNAPSHOT.jar
-    ```
-    (Note: The exact JAR name in `target/` might vary slightly based on your `pom.xml` configuration.)
+| Okno | Popis |
+| --- | --- |
+| **WelcomeScreen** | Hlavní menu — Hrát, Nastavení, Nahrát otázky |
+| **GameScreen** | Samotný kvíz s kartičkami, obrázky a tlačítky odpovědí |
+| **SettingsScreen** | Přepínání světlého a tmavého tématu |
+| **Upload questions** | FileChooser pro výběr vlastního JSON souboru |
 
 ---
 
-## 🎮 How to Use
+## 🚀 Spuštění
 
-1.  Launch the app — the main menu appears.
-2.  **Play** — starts the quiz using the built-in `GameData.json` (from the `res/` folder).
-3.  **Upload questions** — opens a file dialog to pick your own `.json` file to load a custom deck.
-4.  **Settings** — switch between light, dark, or a custom background color, then save your preference.
-5.  **During the quiz** — click one of the four answer buttons; green indicates a correct answer, red indicates a wrong answer.
-6.  **After the last card** — a dialog shows your correct/wrong count and success percentage, then returns to the main menu.
+### Požadavky
+
+- Java 9 nebo novější
+- Maven (pouze pokud sestavuješ ze zdrojového kódu)
+
+### Spuštění JAR souboru
+
+```
+java -jar StudyFlashCards.jar
+```
+
+> Ujisti se, že `GameData.json` a obrázky jsou ve složce `res/` vedle JAR souboru.
+
+### Sestavení ze zdrojového kódu
+
+```
+git clone https://github.com/KyblikPlnejCeleru/StudyFlashCards.git
+cd StudyFlashCards
+mvn package
+java -jar target/projectZaverecnyDzava-1.0-SNAPSHOT.jar
+```
 
 ---
 
-## 📝 JSON Format for Custom Questions
+## 🎮 Jak hrát
 
-Custom question sets must follow this exact structure:
+1. Spusť aplikaci — zobrazí se hlavní menu
+2. **Play** — spustí kvíz s vestavěným `GameData.json`
+3. **Upload questions** — vyber vlastní `.json` soubor pro načtení vlastní sady
+4. **Settings** — přepni světlý/tmavý režim a ulož
+5. **Během kvízu** — klikni na jednu ze čtyř možností; zelená = správně, červená = špatně
+6. **Po poslední kartičce** — dialog zobrazí počet správných/špatných odpovědí a vrátí tě do menu
+
+---
+
+## 📝 Tvorba vlastního JSON souboru
+
+### Základní formát
 
 ```json
 {
   "card": [
     {
-      "name": "Card name",
-      "imagePath": "res/images/your_image.png",
+      "name": "Název kartičky",
+      "imagePath": "C:/Users/jmeno/Pictures/obrazek.png",
       "question": {
-        "q": "What is the question?",
-        "answer": ["Option A", "Option B", "Option C", "Option D"],
+        "q": "Jaká je otázka?",
+        "answer": ["Možnost A", "Možnost B", "Možnost C", "Možnost D"],
         "rAnswerIndex": 0
       }
     }
@@ -91,54 +82,147 @@ Custom question sets must follow this exact structure:
 }
 ```
 
-| Field | Description | Example |
-|---|---|---|
-| `name` | A descriptive name for the card. | `"Capital of France"` |
-| `imagePath` | **Relative path** to the image file from the application's working directory (e.g., `res/images/paris.png`). Ensure images are in the `res/` folder. | `"res/images/eiffel_tower.jpg"` |
-| `q` | The actual question text. | `"Which city is known as the 'City of Love'?"` |
-| `answer` | An array of exactly 4 string options for the multiple-choice question. | `["London", "Paris", "Rome", "Berlin"]` |
-| `rAnswerIndex` | The 0-based index of the correct answer within the `answer` array. | `1` (for "Paris" in the example above) |
+### Popis polí
+
+| Pole | Popis |
+| --- | --- |
+| `name` | Název kartičky (zobrazuje se v hlavičce) |
+| `imagePath` | Absolutní cesta k obrázku (viz níže) |
+| `q` | Text otázky |
+| `answer` | Pole přesně **4** možností odpovědí |
+| `rAnswerIndex` | Index správné odpovědi — **0 = první, 1 = druhá, 2 = třetí, 3 = čtvrtá** |
 
 ---
 
-## 🛠️ Tech Stack
+### ⚠️ Na co si dát pozor
 
-| Technology | Purpose |
-|---|---|
-| Java (Swing) | GUI and core application logic |
-| Maven | Dependency management and build automation |
-| [Gson 2.13.2](https://github.com/google/gson) | Efficient JSON serialization/deserialization |
+#### 1. Cesta k obrázku — lomítka
+Na Windows **nepoužívej zpětná lomítka** `\` — JSON je bere jako escape znaky a hodí chybu. Vždy používej dopředná lomítka `/`:
 
----
+```json
+// ❌ ŠPATNĚ
+"imagePath": "C:\Users\jmeno\Pictures\obrazek.png"
 
-## 📁 Project Structure
-
-```
-.
-├── src/
-│   ├── Main.java               # Application entry point
-│   ├── Brain/
-│   │   ├── Game.java           # Manages game statistics (correct/wrong answers)
-│   │   ├── GameData.java       # Handles loading flashcard data from JSON files
-│   │   └── ThemeManager.java   # Manages application themes (light, dark, custom)
-│   ├── Properties/
-│   │   ├── Card.java           # Data model for a single flashcard
-│   │   └── Question.java       # Data model for a question with answers
-│   └── Windows/
-│       ├── WelcomeScreen.java  # Initial screen with main menu options
-│       ├── GameScreen.java     # Main quiz interface for displaying cards
-│       ├── SettingsScreen.java # Screen for theme configuration
-│       └── RoundedButton.java  # Custom Swing button with rounded corners
-├── res/
-│   ├── GameData.json           # Default built-in question set
-│   └── images/                 # Directory for card images (example)
-├── pom.xml                     # Maven project configuration
-├── README.md                   # Project documentation
-└── LICENSE                     # License file
+// ✅ SPRÁVNĚ
+"imagePath": "C:/Users/jmeno/Pictures/obrazek.png"
 ```
 
+#### 2. Počet odpovědí
+Pole `answer` musí mít **vždy přesně 4 položky**. Méně nebo více způsobí chybné zobrazení tlačítek.
+
+```json
+// ❌ ŠPATNĚ
+"answer": ["Ano", "Ne"]
+
+// ✅ SPRÁVNĚ
+"answer": ["Ano", "Ne", "Možná", "Nevím"]
+```
+
+#### 3. Index správné odpovědi
+`rAnswerIndex` se počítá od **0**, ne od 1:
+
+```json
+"answer": ["Praha", "Brno", "Ostrava", "Plzeň"],
+"rAnswerIndex": 0   // Správná odpověď je "Praha"
+"rAnswerIndex": 2   // Správná odpověď je "Ostrava"
+```
+
+#### 4. Uvozovky a speciální znaky
+Pokud potřebuješ v textu uvozovky, použij `\"`:
+
+```json
+"q": "Jak se řekne \"hello\" česky?"
+```
+
+#### 5. Závorky a čárky
+JSON je přísný na strukturu. Každý objekt `{}` musí být správně uzavřen a mezi položkami v poli musí být čárka (ale **ne za poslední**):
+
+```json
+{
+  "card": [
+    { ... },
+    { ... },
+    { ... }
+  ]
+}
+```
+
+#### 6. Obrázek neexistuje
+Pokud soubor na zadané cestě neexistuje, kartička se zobrazí bez obrázku (prázdná ikona). Zkontroluj, že cesta a název souboru jsou přesné včetně přípony (`.png`, `.jpg`...).
+
 ---
 
-## 📄 License
+### 📄 Vzorový soubor s více kartičkami
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+```json
+{
+  "card": [
+    {
+      "name": "Matematika 1",
+      "imagePath": "C:/Users/jmeno/Pictures/math.png",
+      "question": {
+        "q": "Kolik je 5 + 7?",
+        "answer": ["10", "11", "12", "13"],
+        "rAnswerIndex": 2
+      }
+    },
+    {
+      "name": "Geografie 1",
+      "imagePath": "C:/Users/jmeno/Pictures/mapa.png",
+      "question": {
+        "q": "Jaké je hlavní město České republiky?",
+        "answer": ["Brno", "Ostrava", "Praha", "Plzeň"],
+        "rAnswerIndex": 2
+      }
+    }
+  ]
+}
+```
+
+> **Tip:** JSON soubor si můžeš ověřit online např. na [jsonlint.com](https://jsonlint.com) — vlož kód a řekne ti, jestli je validní.
+
+---
+
+## 🛠️ Technologie
+
+| Technologie | Účel |
+| --- | --- |
+| Java (Swing) | GUI a aplikační logika |
+| Maven | Správa závislostí a build |
+| [Gson 2.13.2](https://github.com/google/gson) | Parsování JSON |
+
+---
+
+## 📁 Struktura projektu
+
+```
+src/
+├── Main.java               # Vstupní bod aplikace
+├── Brain/
+│   ├── Game.java           # Sleduje počty správných/špatných odpovědí
+│   ├── GameData.java       # Načítání dat karet z JSON
+│   └── ThemeManager.java   # Správa světlého/tmavého tématu
+├── Properties/
+│   ├── Card.java           # Model kartičky (název, obrázek, otázka)
+│   ├── Question.java       # Model otázky (text, odpovědi, správný index)
+│   └── Player.java         # Model hráče
+└── Windows/
+    ├── WelcomeScreen.java  # Okno hlavního menu
+    ├── GameScreen.java     # Okno kvízu
+    ├── SettingsScreen.java # Okno nastavení
+    └── RoundedButton.java  # Vlastní komponenta zakulaceného tlačítka
+res/
+└── GameData.json           # Vestavěná sada otázek (3 ukázkové kartičky)
+```
+
+---
+
+## 👥 Autor
+
+romek studios 
+
+---
+
+## 📄 Licence
+
+Projekt je licencován pod MIT licencí — viz soubor [LICENSE](LICENSE).
