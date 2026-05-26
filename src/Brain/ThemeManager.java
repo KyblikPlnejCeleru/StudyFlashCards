@@ -36,18 +36,19 @@ public class ThemeManager {
      * Applies the currently selected theme to various Swing UI components.
      * This method iterates through common Swing component keys and sets their background and foreground colors
      * based on the current theme settings.
-     * @Author claude.ai
      */
     public static void applyTheme() {
         String[] keys = {"Panel", "OptionPane", "FileChooser", "TextField",
                 "List", "ComboBox", "ScrollPane", "Viewport",
                 "ToolBar", "Tree", "Table", "Button", "Label",
                 "RadioButton", "CheckBox", "TabbedPane", "SplitPane"};
-        for (String key : keys) {
+        for (int i = 0; i < keys.length; i++) {
+            String key = keys[i];
             UIManager.put(key + ".background", getBackgroundColor());
             UIManager.put(key + ".foreground", getForegroundColor());
         }
         UIManager.put("TextField.caretForeground", getForegroundColor());
+        UIManager.put("Button.select",getBackgroundColor());
         UIManager.put("TextArea.background", getBackgroundColor());
         UIManager.put("TextArea.foreground", getForegroundColor());
         UIManager.put("OptionPane.messageForeground", getForegroundColor());
