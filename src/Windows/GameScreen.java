@@ -134,6 +134,9 @@ public class GameScreen extends JFrame{
     public void showApp() {
         setVisible(true);
     }
+    /**
+    *Finds index of the correct button
+    */
     private int getCorrectButtonIndex() {
         int originalCorrectIndex = cards.get(currentIndex).getQuestion().getrAnswerIndex();
         for (int i = 0; i < 4; i++) {
