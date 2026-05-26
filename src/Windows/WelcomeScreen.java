@@ -69,7 +69,7 @@ public class WelcomeScreen extends JFrame{
         settingsButton.addActionListener(e -> {
             SettingsScreen settingsScreen = new SettingsScreen();
             settingsScreen.showApp();
-            setVisible(false);
+            dispose();
         });
 
         loadButton.addActionListener(e -> {
