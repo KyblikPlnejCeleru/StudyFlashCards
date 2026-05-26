@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
@@ -41,6 +42,7 @@ public class GameScreen extends JFrame{
     private RoundedButton[] answer;
     private JLabel imageLabel;
     private WelcomeScreen welcomeScreen;
+    private Integer[] currentIndexShuffle;
 
 
 
@@ -56,6 +58,7 @@ public class GameScreen extends JFrame{
         this.currentIndex = 0;
         this.game = new Game();
         this.answer = new RoundedButton[4];
+        this.currentIndexShuffle = new Integer[4];
         this.welcomeScreen = welcomeScreen;
 
 
@@ -93,7 +96,7 @@ public class GameScreen extends JFrame{
             answer[i].setFocusable(false);
             answers.add(answer[i]);
         }
-
+        updateButtons(currentIndex);
 
         String imageName = cards.get(currentIndex).getImageName();
         imageLabel = new JLabel();
@@ -108,12 +111,13 @@ public class GameScreen extends JFrame{
         for (int i = 0; i < answer.length; i++) {
             int finalI = i;
             answer[i].addActionListener(e -> {
-                if (cards.get(currentIndex).correction(finalI)){
+                int correctButtonIndex = getCorrectButtonIndex();
+                if (finalI == correctButtonIndex){
                     answer[finalI].setBackground(Color.GREEN);
                     game.setCorrectAnsw(game.getCorrectAnsw()+1);
                 } else {
                     answer[finalI].setBackground(Color.RED);
-                    answer[cards.get(currentIndex).getQuestion().getrAnswerIndex()].setBackground(Color.GREEN);
+                    answer[correctButtonIndex].setBackground(Color.GREEN);
                     game.setWrongAns(game.getWrongAns()+1);
                 }
                 disableButtons();
@@ -130,6 +134,16 @@ public class GameScreen extends JFrame{
     public void showApp() {
         setVisible(true);
     }
+    private int getCorrectButtonIndex() {
+        int originalCorrectIndex = cards.get(currentIndex).getQuestion().getrAnswerIndex();
+        for (int i = 0; i < 4; i++) {
+            if (currentIndexShuffle[i] == originalCorrectIndex) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
 
     /**
      * Updates the screen with the next card's question, answers, and image.
@@ -159,8 +173,12 @@ public class GameScreen extends JFrame{
      * @param c The index of the card whose answers are to be displayed.
      */
     public void updateButtons(int c){
-        for (int i = 0; i <4 ; i++) {
-            answer[i].setText(cards.get(c).getQuestion().getAnswer()[i]);
+        String[] answers = cards.get(c).getQuestion().getAnswer();
+        Integer[] indexs = {0, 1, 2, 3};
+        Collections.shuffle(Arrays.asList(indexs));
+        this.currentIndexShuffle = indexs;
+        for (int i = 0; i <4; i++) {
+            answer[i].setText(answers[indexs[i]]);
         }
     }
 
