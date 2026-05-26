@@ -164,11 +164,10 @@ public class GameScreen extends JFrame{
             String imageName = cards.get(c).getImageName();
             imageLabel.setIcon(loadImage(imageName));
         } else {
-            JOptionPane.showMessageDialog(this, "Game over! Correct answers: " + game.getCorrectAnsw() + ", Wrong answers: " +game.getWrongAns()+" "+ game.succesPercentage()+"%","Game Over", JOptionPane.INFORMATION_MESSAGE);
+            ResultsDialog.showDialog(this,game.getCorrectAnsw(),game.getWrongAns(),game.succesPercentage());
             dispose();
             welcomeScreen.setVisible(true);
-        }
-    }
+        }}
 
     /**
      * Updates the text of the answer buttons with the answers from the card at the given index.
