@@ -15,7 +15,6 @@ import java.util.Collections;
 
 /**
  * This class is responsible for loading game data, such as cards, from JSON files.
- * @author romek studios + meitnerova + chaloupka + kolinek + pospisil
  */
 public class GameData {
 
@@ -70,5 +69,4 @@ public class GameData {
         }
         return null;
     }
-
 }
