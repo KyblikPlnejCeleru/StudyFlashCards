@@ -58,12 +58,13 @@ public class GameScreen extends JFrame{
         this.answer = new RoundedButton[4];
         this.welcomeScreen = welcomeScreen;
 
+
         ThemeManager.applyTheme();
 
         setExtendedState(Frame.MAXIMIZED_BOTH);
         setLayout(new BorderLayout(10,10));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setMinimumSize(new Dimension(800,800));
         setSize(ss);
 
