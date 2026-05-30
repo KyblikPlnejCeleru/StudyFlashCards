@@ -110,8 +110,22 @@ public class GameScreen extends JFrame{
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         imageLabel.setVerticalAlignment(JLabel.CENTER);
         add(imageLabel,BorderLayout.CENTER);
-        add(question,BorderLayout.NORTH);
+
         add(answers,BorderLayout.SOUTH);
+        RoundedButton backButton = new RoundedButton("← Back");
+        backButton.setFont(new Font("A", Font.PLAIN, ss.width / 100));
+        backButton.setFocusable(false);
+        backButton.addActionListener(e -> {
+            dispose();
+            welcomeScreen.setVisible(true);
+        });
+
+        JPanel top = new JPanel(new BorderLayout());
+        top.setBackground(ThemeManager.getBackgroundColor());
+        top.add(backButton, BorderLayout.EAST);
+        top.add(question, BorderLayout.CENTER);
+
+        add(top, BorderLayout.NORTH);
 
         getContentPane().setBackground(ThemeManager.getBackgroundColor());
         for (int i = 0; i < answer.length; i++) {
