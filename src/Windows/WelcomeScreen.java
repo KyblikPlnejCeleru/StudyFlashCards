@@ -30,34 +30,44 @@ public class WelcomeScreen extends JFrame{
      * Initializes the UI components, sets up layout, applies theme, and adds action listeners to buttons.
      */
     public WelcomeScreen() {
-        setTitle("Welcome");
+
         this.gameData = new GameData();
         this.startButton = new RoundedButton("Play");
         this.settingsButton = new RoundedButton("Settings");
         this.loadButton = new RoundedButton("Upload questions");
 
-        Font font = new Font("a",Font.PLAIN,15);
-
-        setSize(300, 200);
-        setLayout(new GridLayout(3, 1, 5, 5));
+        setTitle("StudyFlashCards");
+        setSize(400, 350);
+        setLayout(new BorderLayout());
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        themeChanger();
+        setResizable(false);
 
+        JLabel title = new JLabel("StudyFlashCards", SwingConstants.CENTER);
+        title.setFont(new Font("a", Font.BOLD, 28));
+        title.setForeground(new Color(139, 46, 130));
+        title.setBorder(BorderFactory.createEmptyBorder(25, 0, 10, 0));
 
+        Font font = new Font("a", Font.PLAIN, 15);
         startButton.setFont(font);
         settingsButton.setFont(font);
         loadButton.setFont(font);
-
-        ThemeManager.applyTheme();
-
-        add(startButton);
-        add(settingsButton);
-        add(loadButton);
         startButton.setFocusable(false);
         settingsButton.setFocusable(false);
         loadButton.setFocusable(false);
 
+        JPanel buttons = new JPanel(new GridLayout(3, 1, 8, 10));
+        buttons.setBorder(BorderFactory.createEmptyBorder(10, 50, 30, 50));
+        buttons.add(startButton);
+        buttons.add(settingsButton);
+        buttons.add(loadButton);
+
+        add(title, BorderLayout.NORTH);
+        add(buttons, BorderLayout.CENTER);
+
+        ThemeManager.applyTheme();
+        themeChanger();
+        buttons.setBackground(ThemeManager.getBackgroundColor());
         startButton.addActionListener(e -> {
             gameData = GameData.loadGameDataFromResources("/GameData.json");
             Collections.shuffle(gameData.card);

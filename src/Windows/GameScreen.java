@@ -75,8 +75,12 @@ public class GameScreen extends JFrame{
 
         question = new JLabel(cards.get(currentIndex).getQuestion().getQ());
         question.setPreferredSize(new Dimension(ss.width/7,ss.height/7));
-        question.setBorder(BorderFactory.createLineBorder(ThemeManager.getForegroundColor(), 2));
-        question.setFont(new Font("Q", Font.PLAIN,ss.width / 60));
+        question.setFont(new Font("Arial", Font.BOLD, ss.width / 50));
+        question.setForeground(ThemeManager.getForegroundColor());
+        question.setForeground(ThemeManager.getForegroundColor());
+        question.setOpaque(true);
+        question.setBackground(ThemeManager.getBackgroundColor().darker());
+        question.setBorder(BorderFactory.createEmptyBorder(15, 20, 15, 20));
 
         question.setHorizontalAlignment(JLabel.CENTER);
         question.setSize(ss.width,ss.height/2);
@@ -87,8 +91,9 @@ public class GameScreen extends JFrame{
 
 
 
-        Font answerFont = new Font("A", Font.PLAIN, ss.width / 80);
-
+        Font answerFont = new Font("A", Font.PLAIN, ss.width / 70);
+        answers.setLayout(new GridLayout(2, 2, 10, 10));
+        answers.setBorder(BorderFactory.createEmptyBorder(10, 20, 20, 20));
 
         for (int i = 0; i < 4; i++) {
             answer[i] = new RoundedButton(cards.get(currentIndex).getQuestion().getAnswer()[i]);
@@ -100,6 +105,7 @@ public class GameScreen extends JFrame{
 
         String imageName = cards.get(currentIndex).getImageName();
         imageLabel = new JLabel();
+        imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         imageLabel.setIcon(loadImage(imageName));
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         imageLabel.setVerticalAlignment(JLabel.CENTER);
