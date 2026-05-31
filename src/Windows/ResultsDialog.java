@@ -8,12 +8,17 @@ import java.awt.*;
  */
 public class ResultsDialog {
     public static void showDialog(JFrame owner, int correct, int wrong, double accuracy) {
-        JDialog dialog = new JDialog(owner, "Game Over", true);
+        JDialog dialog = new JDialog(owner, "Done", true);
         dialog.setLayout(new BorderLayout());
-
-        JLabel title = new JLabel("Game Over", SwingConstants.CENTER);
+        JLabel title;
+        if (accuracy >= 50 ) {
+            title = new JLabel("Good job", SwingConstants.CENTER);
+            title.setForeground(new Color(46, 139, 87));
+        }     else {
+            title = new JLabel("Better luck next time", SwingConstants.CENTER);
+            title.setForeground(new Color(178, 34, 34));
+        }
         title.setFont(new Font("Arial", Font.BOLD, 24));
-        title.setForeground(new Color(46, 139, 87));
         title.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
 
         JPanel stats = new JPanel(new GridLayout(3, 1, 0, 8));
